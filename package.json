@@ -1,6 +1,6 @@
 {
   "name": "asts-workshop",
-  "description": "💯 Improved productivity with the practical 🤓 use of the power 💪 of Abstract Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code",
+  "description": "Improved productivity 💯 with the practical 🤓 use of the power 💪 of Abstract Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code",
   "version": "0.0.0",
   "private": true,
   "homepage": "https://github.com/kentcdodds/asts-workshop",
