@@ -1,6 +1,6 @@
 # JavaScript ASTs Workshop
 
-_💯 Improved productivity with the practical use of the power 💪 of Abstract
+_💯 Improved productivity with the practical 🤓 use of the power 💪 of Abstract
 Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code_
 
 [![slides-badge][slides-badge]][slides]
