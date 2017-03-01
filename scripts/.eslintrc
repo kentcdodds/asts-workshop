@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "extends": ["kentcdodds"],
+  "rules": {
+    "no-console": "off",
+    "no-var": "off",
+    "vars-on-top": "off",
+    "prefer-template": "off",
+    "max-len": [2, 150],
+    "func-names": "off",
+    "prefer-arrow-callback": "off",
+    "brace-style": "off",
+    "complexity": "off",
+    "comma-dangle": [
+      2,
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "functions": "never"
+      }
+    ]
+  }
+}

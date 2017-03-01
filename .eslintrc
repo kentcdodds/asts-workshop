@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "kentcdodds",
+    "kentcdodds/jest",
+  ],
+  "rules": {
+    "max-len": [2, 80]
+  }
+}
