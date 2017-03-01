@@ -1,7 +1,7 @@
 # JavaScript ASTs Workshop
 
-_The practical bits of JavaScript's "standard library" that will make you more
-productive with JavaScript_
+_💯 Improved productivity with the practical use of the power 💪 of Abstract
+Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code_
 
 [![slides-badge][slides-badge]][slides]
 [![chat-badge][chat-badge]][chat]
@@ -149,7 +149,7 @@ MIT
 [yarn]: https://yarnpkg.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
-[slides]: http://kcd.im/built-in-slides
+[slides]: http://kcd.im/asts-workshop-slides
 [slides-badge]: https://cdn.rawgit.com/kentcdodds/custom-badges/2/badges/slides.svg
 [chat]: https://gitter.im/kentcdodds/asts-workshop
 [chat-badge]: https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square
