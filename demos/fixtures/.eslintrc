@@ -1,0 +1,9 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 7
+  },
+  "root": true,
+  "rules": {
+    "semi": [2, "never"]
+  }
+}
