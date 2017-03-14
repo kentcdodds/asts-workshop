@@ -6,7 +6,7 @@
     "no-var": "off",
     "vars-on-top": "off",
     "prefer-template": "off",
-    "max-len": [2, 150],
+    "max-len": [2, 80],
     "func-names": "off",
     "prefer-arrow-callback": "off",
     "brace-style": "off",
