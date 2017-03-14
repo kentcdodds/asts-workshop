@@ -45,7 +45,7 @@
     "format:exercises": "prettier-eslint --write \"exercises*/**/*.js\"",
     "precommit": "opt --in precommit --exec \"npm-run-all precommit:*\"",
     "precommit:1": "npm-run-all --parallel format:templates lint generate",
-    "precommit:2": "npm-run-all --parallel test:final format:exercises",
+    "precommit:2": "npm-run-all --parallel test:demos test:final format:exercises",
     "precommit:3": "git add exercises exercises-final",
     "test": "jest --config=exercises/jest.config.json",
     "test:demos": "jest --config=demos/jest.config.json",
