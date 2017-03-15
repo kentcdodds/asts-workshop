@@ -1,1 +1,3 @@
 scripts/workshop-setup.js
+coverage/
+__testfixtures__
