@@ -3,5 +3,9 @@
     "kentcdodds",
     "kentcdodds/jest",
     "kentcdodds/prettier"
-  ]
+  ],
+  "rules": {
+    "no-console": "off",
+    "complexity": ["error", 10]
+  }
 }

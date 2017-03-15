@@ -2,7 +2,7 @@ import fs from 'fs'
 import * as babel from 'babel-core'
 import linePlugin from './03_babel-simple-demo'
 
-const lineFixture = require.resolve('./fixtures/line.js')
+const lineFixture = require.resolve('./__testfixtures__/line.js')
 
 const lineContent = fs.readFileSync(lineFixture, 'utf8')
 
