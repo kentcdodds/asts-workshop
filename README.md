@@ -60,8 +60,8 @@ commands to get set up:
 ```
 git clone https://github.com/kentcdodds/asts-workshop.git
 cd asts-workshop
-yarn run --silent setup
-yarn run --silent autofill-email YOUR_EMAIL@DOMAIN.COM
+yarn start --silent setup
+yarn start --silent autofill-email YOUR_EMAIL@DOMAIN.COM
 ```
 
 > Replace `YOUR_EMAIL@DOMAIN.COM` with your email address
@@ -76,8 +76,8 @@ file an issue on this repo [here][setup-issue].
 ### Note on yarn
 
 If you don't have `yarn` installed and don't want to use it for some reason, you
-can use [`npm`][npm] as well. Instead of `yarn run setup`, run
-`node ./scripts/install && npm run validate` and enjoy waiting (and hopefully
+can use [`npm`][npm] as well. Instead of `yarn start setup`, run
+`node ./scripts/install && npm start validate` and enjoy waiting (and hopefully
 things don't break for you). May be a good idea to still run
 `node ./scripts/verify` to verify you have the right version of other things
 too.
@@ -102,7 +102,7 @@ yarn test
 If you want the tests to continue running as you make changes, run:
 
 ```
-yarn run test:watch
+yarn start test.watch
 ```
 
 This will start `jest` in its interactive watch mode ([learn more][watch-mode]).
@@ -112,9 +112,13 @@ Your job is to go into each test file in `exercises` and make the tests pass. As
 you make changes, jest will run the file's tests. Once you have written the
 required code, the tests will pass, and you can move on.
 
-**Note:** You may prefer to run the `yarn run test:changed` script which will
+**Note:** You may prefer to run the `yarn start test.changed` script which will
 run the tests only once. This will allow you to avoid the **learning crutch** of
 immediate feedback that you get from the watch mode. But it's up to you!
+
+> Protip: we're using [nps][nps] in this project. If you want to type less, then
+> you can install nps globally: `yarn global add nps` (or `npm i -g nps`) and
+> then you can run `nps` instead of `npm start`
 
 ### Contributing
 
@@ -183,3 +187,4 @@ MIT
 [twitter-kentcdodds]: https://twitter.com/kentcdodds
 [fem]: https://frontendmasters.com/
 [contributing]: https://github.com/kentcdodds/asts-workshop/blob/master/CONTRIBUTING.md
+[nps]: https://npmjs.com/package/nps

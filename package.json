@@ -31,6 +31,8 @@
     "jest-cli": "^19.0.2",
     "lodash": "^4.17.4",
     "npm-run-all": "^4.0.2",
+    "nps": "^5.0.4",
+    "nps-utils": "^1.2.0",
     "onchange": "^3.2.1",
     "opt-cli": "^1.5.1",
     "prettier-eslint-cli": "^3.1.2",
@@ -39,29 +41,9 @@
     "split-guide": "^1.2.1"
   },
   "scripts": {
-    "add-contributor": "all-contributors add",
-    "generate-contributors": "all-contributors generate",
-    "start": "npm run test:watch",
-    "lint": "eslint exercises-final templates demos scripts",
-    "format:templates": "prettier-eslint --write \"templates/**/*.js\"",
-    "format:exercises": "prettier-eslint --write \"exercises*/**/*.js\"",
-    "precommit": "opt --in precommit --exec \"npm-run-all precommit:*\"",
-    "precommit:1": "npm-run-all --parallel format:templates lint generate",
-    "precommit:2": "npm-run-all --parallel test:demos test:final format:exercises",
-    "precommit:3": "git add exercises exercises-final",
-    "test": "jest --config=exercises/jest.config.json",
-    "test:demos": "jest --config=demos/jest.config.json",
-    "test:demos:watch": "npm run test:demos -- --watch",
-    "test:changed": "npm run test --silent -- --onlyChanged",
-    "test:watch": "npm test -- --watch",
-    "test:final": "jest --config=exercises-final/jest.config.json",
-    "test:final:watch": "npm run test:final -- --watch",
-    "dev": "npm run generate && npm-run-all --parallel generate:watch test:final:watch",
-    "generate:watch": "onchange \"templates/**/*.*\" --initial -- npm run generate",
-    "generate": "split-guide generate --silent-success",
-    "autofill-email": "node ./scripts/autofill-feedback-email",
-    "validate": "npm run lint && npm run test:final",
-    "setup": "node ./scripts/verify && node ./scripts/install && npm run validate"
+    "start": "nps",
+    "test": "nps test",
+    "precommit": "nps precommit"
   },
   "LICENSE": "MIT"
 }

@@ -11,10 +11,14 @@ It is recommended you use [`yarn`](https://yarnpkg.com/) rather than [`npm`](htt
 rather stick with `npm`, simply replace `yarn` in the commands below with `npm`.
 
 1. Fork and clone the repo
-2. Run `yarn run setup` to verify your system and install dependencies
+2. Run `yarn start setup` to verify your system and install dependencies
 3. Create a branch for your PR
 
-You can run `yarn run` to see what scripts are available.
+You can run `yarn start` to see what scripts are available.
+
+> Protip: we're using [nps][nps] in this project. If you want to type less, then
+> you can install nps globally: `yarn global add nps` (or `npm i -g nps`) and
+> then you can run `nps` instead of `npm start`
 
 ## Add yourself as a contributor
 
@@ -22,7 +26,7 @@ This project follows the [all contributors][all-contributors] specification. To 
 contributors on the README.md, please use the automated script as part of your PR:
 
 ```console
-yarn run add-contributor
+yarn start contrib.add
 ```
 
 Follow the prompt. If you've already added yourself to the list and are making a new type of contribution, you can run
@@ -33,13 +37,13 @@ it again and select the added contribution type.
 This project uses [`split-guide`](https://github.com/kentcdodds/split-guide) to make maintaining the `exercises` and
 `exercises-final` files easier. The `exercises` and `exercise-final` folders are actually generated code via the
 `generate` script. So any changes you make should go in a `templates` directory. When you've made your changes,
-please run `yarn run split` to regenerate the exercises and commit those changes as part of your pull request.
+please run `yarn start split` to regenerate the exercises and commit those changes as part of your pull request.
 
 > Learn more about `split-guide` and contributing to this project with [this video](https://youtu.be/CSVOPw_5OT0)
 
 ### Development
 
-The best workflow for adding/changing tests is to run `yarn run dev` which will fire up [`onchange`][onchange] for
+The best workflow for adding/changing tests is to run `yarn start dev` which will fire up [`onchange`][onchange] for
 `split-guide` and the `exercises-final` tests in watch mode ([learn more][jest-watch]). With this going, you can open up
 the relevant files in the `templates` directory and start making changes. When you save your changes, the files will
 be generated and the `exercises-final` tests will be re-run.
@@ -55,7 +59,7 @@ instructions above when contributing. Thanks for your help!
 
 There are a bunch of quizzes in the quizzes folder. It'd be awesome to get more of these! I recorded
 [a video](https://youtu.be/LlNGtPFK9OM) showing how it works. Pretty much just open the `quizzes` directory and follow
-the current conventions there! For development, just run `yarn run quiz` and start developing and seeing the output!
+the current conventions there! For development, just run `yarn start quiz` and start developing and seeing the output!
 
 ## opt into git hooks
 
@@ -71,3 +75,4 @@ precommit
 [all-contributors]: https://github.com/kentcdodds/all-contributors
 [onchange]: https://npmjs.com/package/onchange
 [jest-watch]: https://egghead.io/lessons/javascript-use-jest-s-interactive-watch-mode?pl=testing-javascript-with-jest-a36c4074
+[nps]: https://npmjs.com/package/nps
