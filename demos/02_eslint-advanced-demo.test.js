@@ -2,18 +2,27 @@ const {stripIndent} = require('common-tags')
 const {RuleTester} = require('eslint')
 const rule = require('./02_eslint-advanced-demo')
 
+const parserOptions = {
+  ecmaVersion: 6,
+  sourceType: 'module',
+}
+
 const ruleTester = new RuleTester()
 ruleTester.run('no-old-bucket-streams-apis', rule, {
   valid: [
-    `
-      import BucketStreamsAPI from 'bucket-streams-api'
-      BucketStreamsAPI.get('/posts', {userId: '123', limit: 10})
-    `,
-    `
-      const BSA = require('bucket-streams-api')
-      BSA.get('/posts', {userId: '123', limit: 10})
-    `,
-  ].map(string => stripIndent([string.trim()])),
+    valid(
+      `
+        import BucketStreamsAPI from 'bucket-streams-api'
+        BucketStreamsAPI.get('/posts', {userId: '123', limit: 10})
+      `,
+    ),
+    valid(
+      `
+        const BSA = require('bucket-streams-api')
+        BSA.get('/posts', {userId: '123', limit: 10})
+      `,
+    ),
+  ],
   invalid: [
     invalid(
       `
@@ -25,6 +34,8 @@ ruleTester.run('no-old-bucket-streams-apis', rule, {
           limit: 10,
         })
       `,
+    ),
+    invalid(
       `
         import BSA from 'bucket-streams-api'
         BSA.request({
@@ -34,6 +45,8 @@ ruleTester.run('no-old-bucket-streams-apis', rule, {
           limit: 10,
         })
       `,
+    ),
+    invalid(
       `
         const BSA = require('bucket-streams-api')
         BSA.request({
@@ -47,11 +60,23 @@ ruleTester.run('no-old-bucket-streams-apis', rule, {
   ],
 })
 
-function invalid(code, output = '') {
+function valid(code) {
   return {
     code: stripIndent([code.trim()]),
-    output: stripIndent([output.trim()]),
-    errors: [{message: 'Block expected in alternate', type: 'IfStatement'}],
+    parserOptions,
+  }
+}
+
+function invalid(code) {
+  return {
+    code: stripIndent([code.trim()]),
+    parserOptions,
+    errors: [
+      {
+        message: 'The `request` API has been deprecated. Use `get`',
+        type: 'Identifier',
+      },
+    ],
   }
 }
 
@@ -61,3 +86,4 @@ function invalid(code, output = '') {
 // more extra credit
 // try to handle when it's using desctructuring!
 //   `const {request} = require('bucket-streams-api')
+// try to write a fixer for it!

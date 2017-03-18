@@ -10,27 +10,60 @@ module.exports = {
   create(context) {
     const identifiers = new Set()
 
-    function report(node) {
+    function report(node, methodName) {
       context.report({
         node,
-        message: 'y u use bad apis?',
+        message: 'The `request` API has been deprecated. Use {{methodName}}',
+        data: {
+          methodName,
+        },
       })
     }
 
     return {
-      ImportDeclaration() {},
+      ImportDeclaration(node) {
+        if (
+          node.source.value !== 'bucket-streams-api' ||
+          node.specifiers[0].type !== 'ImportDefaultSpecifier'
+        ) {
+          return
+        }
+        const variable = context.getDeclaredVariables(node.specifiers[0])[0]
+        variable.references.forEach(reference => {
+          identifiers.add(reference.identifier)
+        })
+      },
       VariableDeclarator(node) {
         if (!isRequireCall(node.init) || node.id.type !== 'Identifier') {
           return
         }
         // Because node.id is an Identifier, always one item.
         const variable = context.getDeclaredVariables(node)[0]
-        identifiers.add(variable.references[1].identifier)
+        variable.references.slice(1).forEach(reference => {
+          identifiers.add(reference.identifier)
+        })
       },
       'Program:exit'() {
         Array.from(identifiers).forEach(identifier => {
           if (identifier.parent.property.name === 'request') {
-            report(identifier)
+            let methodName = 'the method-specific API'
+            if (identifier.parent.parent.type === 'CallExpression') {
+              const {
+                parent: {
+                  parent: {
+                    arguments: [{properties}],
+                  },
+                },
+              } = identifier
+              const methodProperty = properties.find(p => {
+                return p.key.name === 'method' && p.value.type === 'Literal'
+              })
+              const {value: {value} = {}} = methodProperty || {}
+              if (value) {
+                methodName = `\`${value.toLowerCase()}\``
+              }
+            }
+            report(identifier.parent.property, methodName)
           }
         })
       },
