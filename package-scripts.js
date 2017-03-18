@@ -41,7 +41,10 @@ module.exports = {
       watch: 'onchange "templates/**/*.*" --initial -- nps generate',
       default: 'split-guide generate --silent-success',
     },
-    autofillEmail: 'node ./scripts/autofill-feedback-email',
+    autofillEmail: series(
+      'node ./scripts/autofill-feedback-email',
+      'git commit -am "autofill-email"'
+    ),
     validate: series.nps('lint', 'test.final'),
     setup: series(
       'node ./scripts/verify',

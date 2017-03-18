@@ -11,7 +11,7 @@ test('I submitted my elaboration and feedback', () => {
 // WORKSHOP_END
 // FINAL_START
 test('I submitted my elaboration and feedback', () => {
-  const submitted = true // change this when you've submitted!
+  const submitted = true
   expect(true).toBe(submitted)
 })
 // FINAL_END

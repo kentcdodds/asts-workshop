@@ -16,7 +16,7 @@ test('codemods imports of CommonJS modules', () => {
 })
 
 test('I submitted my elaboration and feedback', () => {
-  const submitted = true // change this when you've submitted!
+  const submitted = true
   expect(true).toBe(submitted)
 })
 
