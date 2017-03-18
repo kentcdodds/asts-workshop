@@ -1,6 +1,6 @@
 const {stripIndent} = require('common-tags')
 const {RuleTester} = require('eslint')
-const rule = require('./02_eslint-advanced-demo')
+const rule = require('./02_eslint-demo')
 
 const parserOptions = {
   ecmaVersion: 6,

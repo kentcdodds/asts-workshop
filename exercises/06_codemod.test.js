@@ -1,6 +1,6 @@
 import fs from 'fs'
 import * as babel from 'babel-core'
-import nodeESModulePlugin from './06_codemod-advanced'
+import nodeESModulePlugin from './06_codemod'
 
 const esmFixFixture = require.resolve('./__testfixtures__/esm-fix/main.js')
 
