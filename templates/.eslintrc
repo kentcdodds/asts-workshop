@@ -5,7 +5,8 @@
   "rules": {
     // COMMENT_START
     "jest/no-identical-title": "off",
-    "no-redeclare": "off"
+    "no-redeclare": "off",
+    "no-dupe-keys": "off",
     // COMMENT_END
   }
 }

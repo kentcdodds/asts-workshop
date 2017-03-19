@@ -1,6 +1,6 @@
 import fs from 'fs'
 import * as babel from 'babel-core'
-import linePlugin from './03_babel-demo'
+import linePlugin from './05_babel-demo'
 
 const lineFixture = require.resolve('./__testfixtures__/line.js')
 

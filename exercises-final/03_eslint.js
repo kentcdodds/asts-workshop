@@ -26,19 +26,19 @@ module.exports = {
             fix: getFix(node.alternate),
           })
         }
-        function getFix(nodeToFix) {
-          return fixer => {
-            return fixer.replaceText(
-              nodeToFix,
-              `{${sourceCode.getText(nodeToFix)}}`,
-            )
-          }
-        }
-
-        function isBlockOrIfStatement(n) {
-          return !n || n.type === 'BlockStatement' || n.type === 'IfStatement'
-        }
       },
     }
+    function getFix(nodeToFix) {
+      return fixer => {
+        return fixer.replaceText(
+          nodeToFix,
+          `{${sourceCode.getText(nodeToFix)}}`,
+        )
+      }
+    }
   },
+}
+
+function isBlockOrIfStatement(node) {
+  return !node || node.type === 'BlockStatement' || node.type === 'IfStatement'
 }

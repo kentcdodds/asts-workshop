@@ -1,6 +1,6 @@
 const {stripIndent} = require('common-tags')
 const {RuleTester} = require('eslint')
-const rule = require('./02_eslint-demo')
+const rule = require('./01_eslint-demo')
 
 test('this will be tested eventually', () => {
   expect(true).toBe(true)

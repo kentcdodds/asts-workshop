@@ -1,7 +1,7 @@
 module.exports = {
   meta: {
     docs: {
-      description: 'something like the boolean example',
+      description: 'Disallow use of alert',
       category: '',
       recommended: true,
     },

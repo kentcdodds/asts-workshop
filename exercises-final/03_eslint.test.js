@@ -1,6 +1,6 @@
 import {stripIndent} from 'common-tags'
 import {RuleTester} from 'eslint'
-import rule from './01_eslint'
+import rule from './03_eslint'
 
 const ruleTester = new RuleTester()
 
