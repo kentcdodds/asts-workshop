@@ -8,7 +8,6 @@ module.exports = {
       recommended: true,
     },
     fixable: 'code',
-    schema: [], // no options
   },
   create(context) {
     return {

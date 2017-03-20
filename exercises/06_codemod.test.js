@@ -17,7 +17,7 @@ test('codemods imports of CommonJS modules', () => {
 
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=&em=
+http://ws.kcd.im/?ws=ASTs&e=06_codemod&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

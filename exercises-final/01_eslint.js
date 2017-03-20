@@ -1,18 +1,18 @@
 module.exports = {
   meta: {
     docs: {
-      description: 'Disallow use of alert',
+      description: 'Disallow use of console',
       category: 'Best Practices',
       recommended: true,
     },
   },
   create(context) {
     return {
-      CallExpression(node) {
-        if (node.callee.name === 'alert') {
+      MemberExpression(node) {
+        if (node.object.name === 'console') {
           context.report({
             node,
-            message: 'Using alert is not allowed',
+            message: 'Using console is not allowed',
           })
         }
       },

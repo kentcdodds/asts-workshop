@@ -1,24 +1,32 @@
-import fs from 'fs'
-import * as babel from 'babel-core'
-import nodeESModulePlugin from './06_codemod'
+const {RuleTester} = require('eslint')
+const rule = require('./01_eslint')
 
-const esmFixFixture = require.resolve('./__testfixtures__/esm-fix/main.js')
-
-const esmFixContent = fs.readFileSync(esmFixFixture, 'utf8')
-
-test('codemods imports of CommonJS modules', () => {
-  const {code} = babel.transform(esmFixContent, {
-    filename: esmFixFixture,
-    babelrc: false,
-    plugins: [nodeESModulePlugin],
-  })
-  expect(code).toMatchSnapshot()
+const ruleTester = new RuleTester()
+ruleTester.run('no-console', rule, {
+  // WORKSHOP_START
+  valid: [],
+  invalid: [],
+  // WORKSHOP_END
+  // FINAL_START
+  valid: ['foo.console()', 'console()', 'info()'],
+  invalid: [
+    {
+      code: `console.log()`,
+      errors: [
+        {
+          message: 'Using console is not allowed',
+          type: 'MemberExpression',
+        },
+      ],
+    },
+  ],
+  // FINAL_END
 })
 
 // WORKSHOP_START
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=06_codemod&em=
+http://ws.kcd.im/?ws=ASTs&e=01_eslint&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

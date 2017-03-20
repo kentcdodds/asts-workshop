@@ -1,24 +1,15 @@
-const {stripIndent} = require('common-tags')
 const {RuleTester} = require('eslint')
-const rule = require('./02_eslint')
+const rule = require('./01_eslint')
 
 const ruleTester = new RuleTester()
-ruleTester.run('embrace-booleans', rule, {
-  valid: [
-    // what are some cases where this should
-    // not report anything?
-  ],
-  invalid: [
-    // what are some cases where this
-    // should report an error?
-    // What should the error say?
-    // What should the fixed version look like?
-  ],
+ruleTester.run('no-console', rule, {
+  valid: [],
+  invalid: [],
 })
 
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=02_eslint&em=
+http://ws.kcd.im/?ws=ASTs&e=01_eslint&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

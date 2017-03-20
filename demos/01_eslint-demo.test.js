@@ -1,33 +1,18 @@
-const {stripIndent} = require('common-tags')
 const {RuleTester} = require('eslint')
 const rule = require('./01_eslint-demo')
 
-test('this will be tested eventually', () => {
-  expect(true).toBe(true)
-})
-
-const parserOptions = {
-  ecmaVersion: 6,
-}
-
 const ruleTester = new RuleTester()
-ruleTester.run('no-blockless-switch-case', rule, {
-  valid: valid(),
-  invalid: invalid(),
+ruleTester.run('no-alert', rule, {
+  valid: ['foo.alert()', 'balert()', 'alerts()', `var x = alert`],
+  invalid: [
+    {
+      code: `alert()`,
+      errors: [
+        {
+          message: 'Using alert is not allowed',
+          type: 'CallExpression',
+        },
+      ],
+    },
+  ],
 })
-
-function valid(validTests = []) {
-  return validTests.map(code => ({
-    code: stripIndent([code]),
-    parserOptions,
-  }))
-}
-
-function invalid(invalidTests = []) {
-  return invalidTests.map(({code, output, ...rest}) => ({
-    code: stripIndent([code]),
-    output: stripIndent([output]),
-    parserOptions,
-    ...rest,
-  }))
-}

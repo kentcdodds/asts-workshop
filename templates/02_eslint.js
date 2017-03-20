@@ -1,6 +1,18 @@
 // credit to for the original code:
 // https://github.com/mvolkmann/eslint-plugin-volkmann
 module.exports = {
+  // WORKSHOP_START
+  meta: {
+    docs: {
+      description: '',
+      category: '',
+      recommended: true || false, // up to you :)
+    },
+    fixable: 'code', // you need to write the fixer!
+    schema: [], // extra credit, make this take options
+  },
+  // WORKSHOP_END
+  // FINAL_START
   meta: {
     docs: {
       description: 'embrace booleans',
@@ -8,10 +20,11 @@ module.exports = {
       recommended: true,
     },
     fixable: 'code',
-    schema: [], // no options
   },
+  // FINAL_END
   create(context) {
     return {
+      // FINAL_START
       ConditionalExpression(node) {
         const consequent = node.consequent.raw
         const alternate = node.alternate.raw
@@ -38,6 +51,7 @@ module.exports = {
           })
         }
       },
+      // FINAL_END
     }
   },
 }

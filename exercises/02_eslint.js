@@ -3,41 +3,14 @@
 module.exports = {
   meta: {
     docs: {
-      description: 'embrace booleans',
-      category: 'Stylistic Issues',
-      recommended: true,
+      description: '',
+      category: '',
+      recommended: true || false, // up to you :)
     },
-    fixable: 'code',
-    schema: [], // no options
+    fixable: 'code', // you need to write the fixer!
+    schema: [], // extra credit, make this take options
   },
   create(context) {
-    return {
-      ConditionalExpression(node) {
-        const consequent = node.consequent.raw
-        const alternate = node.alternate.raw
-        const boolTrue = consequent === 'true' && alternate === 'false'
-        const boolFalse = consequent === 'false' && alternate === 'true'
-        if (boolTrue || boolFalse) {
-          const sourceCode = context.getSourceCode()
-          const testCode = sourceCode.getText(node.test)
-          let usage = `Boolean(${testCode})`
-          if (boolFalse) {
-            usage = `!${usage}`
-          }
-          context.report({
-            node,
-            message: 'Unnecessary ternary; Use {{usage}} instead',
-            data: {
-              usage,
-            },
-            fix(fixer) {
-              // This fix is too verbose.
-              // You might prefer to manually fix the code.
-              return fixer.replaceText(node, usage)
-            },
-          })
-        }
-      },
-    }
+    return {}
   },
 }

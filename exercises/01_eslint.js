@@ -9,6 +9,10 @@ module.exports = {
     schema: [], // extra credit, make this take options
   },
   create(context) {
-    return {}
+    return {
+      // fill this in with code :)
+      // this object should have "visitor" functions
+      // for each node you're interested in inspecting
+    }
   },
 }

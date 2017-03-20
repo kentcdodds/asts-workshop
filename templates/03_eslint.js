@@ -26,11 +26,6 @@ module.exports = {
     const sourceCode = context.getSourceCode()
     // FINAL_END
     return {
-      // WORKSHOP_START
-      // fill this in with code :)
-      // this object should have "visitor" functions
-      // for each node you're interested in inspecting
-      // WORKSHOP_END
       // FINAL_START
       IfStatement(node) {
         if (!isBlockOrIfStatement(node.consequent)) {
