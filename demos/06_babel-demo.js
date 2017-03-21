@@ -51,6 +51,7 @@ function i18nPlugin({types: t}) {
           if (!contents) {
             const {dir, name} = nodePath.parse(filename)
             const i18nFilePath = nodePath.join(dir, 'i18n', name, `${lang}.js`)
+            // eslint-disable-next-line import/no-dynamic-require
             contents = require(i18nFilePath)
             languageContents.set(filename, contents)
           }
