@@ -24,7 +24,7 @@ function i18nPlugin({types: t}) {
           }
         },
       },
-      Identifier(path, {file, opts}) {
+      Identifier(path, {file, opts: {lang = 'en'}}) {
         const {node: {name: idName}} = path
         if (idName !== '__i18n__') {
           return
@@ -42,20 +42,15 @@ function i18nPlugin({types: t}) {
         }
 
         function getI18nContents(filename) {
-          let languageContents = languageMap.get(opts.lang)
+          let languageContents = languageMap.get(lang)
           if (!languageContents) {
             languageContents = new Map()
-            languageMap.set(opts.lang, languageContents)
+            languageMap.set(lang, languageContents)
           }
           let contents = languageContents.get(filename)
           if (!contents) {
             const {dir, name} = nodePath.parse(filename)
-            const i18nFilePath = nodePath.join(
-              dir,
-              'i18n',
-              name,
-              `${opts.lang || 'en'}.js`,
-            )
+            const i18nFilePath = nodePath.join(dir, 'i18n', name, `${lang}.js`)
             contents = require(i18nFilePath)
             languageContents.set(filename, contents)
           }
