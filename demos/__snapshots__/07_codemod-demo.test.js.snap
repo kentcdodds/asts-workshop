@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`codemods imports of CommonJS modules 1`] = `
+"
+el.style.display = 'hide';
+foo.hide();"
+`;
