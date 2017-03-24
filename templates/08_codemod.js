@@ -13,6 +13,11 @@ function importCommonJSPlugin() {
   return {
     name: 'node-esmodule',
     visitor: {
+      // WORKSHOP_START
+      // You'll need to fill this out yourself. I've left a few
+      // utilities that you might find helpful.
+      // WORKSHOP_END
+      // FINAL_START
       ImportDeclaration(path, {file}) {
         let memberObjectNameIdentifier
         const {
@@ -56,6 +61,7 @@ function importCommonJSPlugin() {
           specifier.remove()
         })
       },
+      // FINAL_END
     },
   }
 }
@@ -123,6 +129,7 @@ function exportsAsESModule(modulePath) {
     })
     return hasExportSpecifier
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(`unable to parse "${modulePath}"`, error)
     return false
   }

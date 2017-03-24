@@ -1,6 +1,6 @@
 import fs from 'fs'
 import * as babel from 'babel-core'
-import nodeESModulePlugin from './06_codemod'
+import nodeESModulePlugin from './08_codemod'
 
 const esmFixFixture = require.resolve('./__testfixtures__/esm-fix/main.js')
 
@@ -18,7 +18,7 @@ test('codemods imports of CommonJS modules', () => {
 // WORKSHOP_START
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=06_codemod&em=
+http://ws.kcd.im/?ws=ASTs&e=08_codemod&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

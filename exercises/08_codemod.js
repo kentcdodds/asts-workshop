@@ -13,55 +13,8 @@ function importCommonJSPlugin() {
   return {
     name: 'node-esmodule',
     visitor: {
-      // WORKSHOP_START
       // You'll need to fill this out yourself. I've left a few
       // utilities that you might find helpful.
-      // WORKSHOP_END
-      // FINAL_START
-      ImportDeclaration(path, {file}) {
-        let memberObjectNameIdentifier
-        const {
-          defaultSpecifier,
-          namespaceSpecifier,
-          namedSpecifiers,
-        } = splitSpecifiers(path.get('specifiers'))
-
-        const {node: {value: source}} = path.get('source')
-
-        const specifiersExist = Boolean(namedSpecifiers.length) ||
-          Boolean(namespaceSpecifier)
-        const isCJS = isCommonJSModule(source, file.opts.filename)
-        if (!specifiersExist || !isCJS) {
-          return
-        }
-        if (defaultSpecifier) {
-          memberObjectNameIdentifier = defaultSpecifier.node.local
-        } else if (namespaceSpecifier) {
-          memberObjectNameIdentifier = namespaceSpecifier.node.local
-          namespaceSpecifier.replaceWith(
-            t.importDefaultSpecifier(memberObjectNameIdentifier),
-          )
-        } else {
-          memberObjectNameIdentifier = path.scope.generateUidIdentifier(source)
-          path.node.specifiers.push(
-            t.importDefaultSpecifier(memberObjectNameIdentifier),
-          )
-        }
-        namedSpecifiers.forEach(specifier => {
-          const {node: {imported: {name}}} = specifier
-          const {referencePaths} = specifier.scope.getBinding(name)
-          referencePaths.forEach(refPath => {
-            refPath.replaceWith(
-              t.memberExpression(
-                memberObjectNameIdentifier,
-                t.identifier(name),
-              ),
-            )
-          })
-          specifier.remove()
-        })
-      },
-      // FINAL_END
     },
   }
 }
@@ -129,6 +82,7 @@ function exportsAsESModule(modulePath) {
     })
     return hasExportSpecifier
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(`unable to parse "${modulePath}"`, error)
     return false
   }

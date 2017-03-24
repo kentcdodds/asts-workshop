@@ -1,23 +1,21 @@
-import fs from 'fs'
 import * as babel from 'babel-core'
-import nodeESModulePlugin from './06_codemod'
-
-const esmFixFixture = require.resolve('./__testfixtures__/esm-fix/main.js')
-
-const esmFixContent = fs.readFileSync(esmFixFixture, 'utf8')
+import jQueryAddClassPlugin from './07_codemod'
 
 test('codemods imports of CommonJS modules', () => {
-  const {code} = babel.transform(esmFixContent, {
-    filename: esmFixFixture,
+  const source = `
+    $(el).addClass(className);
+    foo.addClass(otherClassThing);
+  `
+  const {code} = babel.transform(source, {
     babelrc: false,
-    plugins: [nodeESModulePlugin],
+    plugins: [jQueryAddClassPlugin],
   })
   expect(code).toMatchSnapshot()
 })
 
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=06_codemod&em=
+http://ws.kcd.im/?ws=ASTs&e=07_codemod&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!
