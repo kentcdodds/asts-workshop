@@ -12,22 +12,37 @@ const parserOptions = {
 
 const ruleTester = new RuleTester()
 ruleTester.run('no-blockless-switch-case', rule, {
-  valid: valid(),
-  invalid: invalid(),
+  valid: [
+    valid(`var x = Boolean(condition) || value`),
+    valid(`var x = !Boolean(condition) || value`),
+    valid(`var x = condition ? false : value`),
+  ],
+  invalid: [
+    invalid({
+      code: `var x = condition ? true : value`,
+      output: `var x = Boolean(condition) || value`,
+      errors: [
+        {
+          message: 'Simplify ternary to logical expression',
+          type: 'ConditionalExpression',
+        },
+      ],
+    }),
+  ],
 })
 
-function valid(validTests = []) {
-  return validTests.map(code => ({
+function valid(code) {
+  return {
     code: stripIndent([code]),
     parserOptions,
-  }))
+  }
 }
 
-function invalid(invalidTests = []) {
-  return invalidTests.map(({code, output, ...rest}) => ({
+function invalid({code, output, ...rest}) {
+  return {
     code: stripIndent([code]),
     output: stripIndent([output]),
     parserOptions,
     ...rest,
-  }))
+  }
 }
