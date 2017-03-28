@@ -28,14 +28,6 @@ function splitSpecifiers(specifiers) {
         acc.namespaceSpecifier = specifier
       } else if (t.isImportDefaultSpecifier(specifier)) {
         acc.defaultSpecifier = specifier
-      } else {
-        throw new Error(
-          oneLine`
-            I'm not sure what's up, but I don't
-            know what to do with a specifier with
-            the type "${specifier.type}".
-          `,
-        )
       }
       return acc
     },

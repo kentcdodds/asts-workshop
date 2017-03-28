@@ -1,12 +1,16 @@
 import * as babel from 'babel-core'
+import * as recast from 'recast'
+import {stripIndent} from 'common-tags'
 import jQueryAddClassPlugin from './07_codemod'
 
 test('codemods imports of CommonJS modules', () => {
-  const source = `
-    $(el).addClass(className);
-    foo.addClass(otherClassThing);
+  const source = stripIndent`
+    $(el).addClass(className)
+    foo.addClass(otherClassThing)
   `
   const {code} = babel.transform(source, {
+    parserOpts: {parser: recast.parse},
+    generatorOpts: {generator: recast.print},
     babelrc: false,
     plugins: [jQueryAddClassPlugin],
   })

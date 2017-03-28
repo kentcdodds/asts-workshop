@@ -1,5 +1,6 @@
 import fs from 'fs'
 import * as babel from 'babel-core'
+import * as recast from 'recast'
 import nodeESModulePlugin from './08_codemod'
 
 const esmFixFixture = require.resolve('./__testfixtures__/esm-fix/main.js')
@@ -9,6 +10,8 @@ const esmFixContent = fs.readFileSync(esmFixFixture, 'utf8')
 test('codemods imports of CommonJS modules', () => {
   const {code} = babel.transform(esmFixContent, {
     filename: esmFixFixture,
+    parserOpts: {parser: recast.parse},
+    generatorOpts: {generator: recast.print},
     babelrc: false,
     plugins: [nodeESModulePlugin],
   })
