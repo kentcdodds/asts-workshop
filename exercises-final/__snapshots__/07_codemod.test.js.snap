@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`codemods imports of CommonJS modules 1`] = `
+exports[`codemods jquery add class 1`] = `
 "el.classList.add(className)
 foo.addClass(otherClassThing)"
 `;

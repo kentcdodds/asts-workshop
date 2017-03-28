@@ -1,26 +1,47 @@
-import * as babel from 'babel-core'
-import * as recast from 'recast'
 import {stripIndent} from 'common-tags'
-import jQueryAddClassPlugin from './07_codemod'
+import * as babel from 'babel-core'
+import devPlugin from './05_babel'
 
-test('codemods jquery add class', () => {
+const env = process.env.NODE_ENV
+
+afterEach(() => {
+  process.env.NODE_ENV = env
+})
+
+test('transpiles __DEV__ to false', () => {
+  process.env.NODE_ENV = 'production'
   const source = stripIndent`
-    $(el).addClass(className)
-    foo.addClass(otherClassThing)
+    if (__DEV__) {
+      console.log('You are in dev mode!')
+    }
   `
   const {code} = babel.transform(source, {
-    parserOpts: {parser: recast.parse},
-    generatorOpts: {generator: recast.print},
     babelrc: false,
-    plugins: [jQueryAddClassPlugin],
+    plugins: [devPlugin],
   })
+  expect(code).not.toContain('__DEV__')
+  expect(code).toMatchSnapshot()
+})
+
+test('transpiles __DEV__ to true', () => {
+  process.env.NODE_ENV = 'development'
+  const source = stripIndent`
+    if (__DEV__) {
+      console.log('You are in dev mode!')
+    }
+  `
+  const {code} = babel.transform(source, {
+    babelrc: false,
+    plugins: [devPlugin],
+  })
+  expect(code).not.toContain('__DEV__')
   expect(code).toMatchSnapshot()
 })
 
 // WORKSHOP_START
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=07_codemod-jquery-add-class&em=
+http://ws.kcd.im/?ws=ASTs&e=05_babel-dev-mode&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

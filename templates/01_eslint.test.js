@@ -26,7 +26,7 @@ ruleTester.run('no-console', rule, {
 // WORKSHOP_START
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=01_eslint&em=
+http://ws.kcd.im/?ws=ASTs&e=01_eslint-no-console&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

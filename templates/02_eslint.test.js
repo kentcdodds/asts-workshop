@@ -69,7 +69,7 @@ function invalid({code, output, usage, ...rest}) {
 // WORKSHOP_START
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=02_eslint&em=
+http://ws.kcd.im/?ws=ASTs&e=02_eslint-embrace-boolean&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

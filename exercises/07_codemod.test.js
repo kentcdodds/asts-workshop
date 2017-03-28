@@ -3,7 +3,7 @@ import * as recast from 'recast'
 import {stripIndent} from 'common-tags'
 import jQueryAddClassPlugin from './07_codemod'
 
-test('codemods imports of CommonJS modules', () => {
+test('codemods jquery add class', () => {
   const source = stripIndent`
     $(el).addClass(className)
     foo.addClass(otherClassThing)
@@ -19,7 +19,7 @@ test('codemods imports of CommonJS modules', () => {
 
 //////// Elaboration & Feedback /////////
 /*
-http://ws.kcd.im/?ws=ASTs&e=07_codemod&em=
+http://ws.kcd.im/?ws=ASTs&e=07_codemod-jquery-add-class&em=
 */
 test('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

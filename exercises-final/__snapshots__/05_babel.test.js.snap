@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transpiles __DEV__ to false 1`] = `
+"if (false) {
+  console.log('You are in dev mode!');
+}"
+`;
+
+exports[`transpiles __DEV__ to true 1`] = `
+"if (true) {
+  console.log('You are in dev mode!');
+}"
+`;
