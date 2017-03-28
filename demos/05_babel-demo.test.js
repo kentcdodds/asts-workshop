@@ -1,14 +1,16 @@
-import fs from 'fs'
+import {stripIndent} from 'common-tags'
 import * as babel from 'babel-core'
 import linePlugin from './05_babel-demo'
 
-const lineFixture = require.resolve('./__testfixtures__/line.js')
-
-const lineContent = fs.readFileSync(lineFixture, 'utf8')
-
 test('transpiles __line__ to the line number', () => {
-  const {code} = babel.transform(lineContent, {
-    filename: lineFixture,
+  const source = stripIndent`
+    console.log(__line__)
+
+    function log(someLine = __line__) {
+      console.log('the line', someLine, __line__)
+    }
+  `
+  const {code} = babel.transform(source, {
     babelrc: false,
     plugins: [linePlugin],
   })

@@ -15,7 +15,7 @@ module.exports = {
     precommit: {
       description: 'our pre-commit hook',
       script: series(
-        concurrent.nps('format.templates', 'lint', 'generate'),
+        series.nps('format.templates', 'generate', 'lint'),
         concurrent.nps('test.demos', 'test.final', 'format.exercises'),
         'git add exercises exercises-final'
       ),
@@ -45,7 +45,11 @@ module.exports = {
       'node ./scripts/autofill-feedback-email',
       'git commit -am "autofill-email"'
     ),
-    validate: series.nps('lint', 'test.final'),
+    validate: {
+      script: series.nps('lint', 'test.final'),
+      full: concurrent.nps('validate.generated', 'test.demos'),
+      generated: series.nps('generate', 'lint', 'test.final'),
+    },
     setup: series(
       'node ./scripts/verify',
       'node ./scripts/install',
