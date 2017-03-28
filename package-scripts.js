@@ -15,8 +15,8 @@ module.exports = {
     precommit: {
       description: 'our pre-commit hook',
       script: series(
-        series.nps('format.templates', 'generate', 'lint'),
-        concurrent.nps('test.demos', 'test.final', 'format.exercises'),
+        series.nps('format.templates', 'generate', 'lint', 'format.exercises'),
+        concurrent.nps('test.demos', 'test.final'),
         'git add exercises exercises-final'
       ),
     },
