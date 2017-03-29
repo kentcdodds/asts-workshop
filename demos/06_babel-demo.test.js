@@ -1,9 +1,8 @@
 import fs from 'fs'
-// import jsxSyntax from 'babel-plugin-syntax-jsx'
 import * as babel from 'babel-core'
 import i18nPlugin from './06_babel-demo'
 
-const appI18nPath = require.resolve('./__testfixtures__/app-i18n')
+const appI18nPath = require.resolve('./__testfixtures__/i18n-demo/app-i18n')
 
 const appI18n = fs.readFileSync(appI18nPath, 'utf8')
 
