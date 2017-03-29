@@ -24,13 +24,13 @@ module.exports = {
       default: 'jest --config=exercises/jest.config.json',
       demos: {
         default: 'jest --config=demos/jest.config.json',
-        watch: 'nps "test.demos --watch"',
+        watch: 'jest --config=demos/jest.config.json --watch',
       },
-      changed: 'nps --silent "test --onlyChanged"',
-      watch: 'nps "test --watch"',
+      changed: 'jest --config=exercises/jest.config.json --onlyChanged',
+      watch: 'jest --config=exercises/jest.config.json --watch',
       final: {
         default: 'jest --config=exercises-final/jest.config.json',
-        watch: 'nps "test.final --watch"',
+        watch: 'jest --config=exercises-final/jest.config.json --watch',
       },
     },
     dev: series(

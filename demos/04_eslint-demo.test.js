@@ -79,11 +79,3 @@ function invalid(code) {
     ],
   }
 }
-
-// extra credit
-// try to handle when it's imported like:
-//   `import {default as BSA} from 'bucket-streams-api'`
-// more extra credit
-// try to handle when it's using desctructuring!
-//   `const {request} = require('bucket-streams-api')
-// try to write a fixer for it!
