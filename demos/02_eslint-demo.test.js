@@ -2,16 +2,12 @@ const {stripIndent} = require('common-tags')
 const {RuleTester} = require('eslint')
 const rule = require('./02_eslint-demo')
 
-test('this will be tested eventually', () => {
-  expect(true).toBe(true)
-})
-
 const parserOptions = {
   ecmaVersion: 6,
 }
 
 const ruleTester = new RuleTester()
-ruleTester.run('no-blockless-switch-case', rule, {
+ruleTester.run('no-unnecessary-ternary', rule, {
   valid: [
     valid(`var x = Boolean(condition) || value`),
     valid(`var x = !Boolean(condition) || value`),

@@ -1,7 +1,7 @@
 module.exports = {
   meta: {
     docs: {
-      description: 'Disallow blockless if statements',
+      description: 'Disallow blockless switch cases',
       category: 'Best Practices',
       recommended: true,
     },
