@@ -152,19 +152,6 @@ module.exports = {
         script: concurrent.nps('split', 'lint', 'test.all'),
       },
     },
-    setup: {
-      description: oneLine`
-        This will do a few things for you:
-        1) Verify you're system is setup correctly
-        2) Install all project dependencies
-        3) Verify the project is ready to run
-      `,
-      script: series(
-        'node ./scripts/verify',
-        'node ./scripts/install',
-        'nps validate'
-      ),
-    },
   },
 }
 

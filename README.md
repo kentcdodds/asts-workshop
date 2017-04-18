@@ -66,8 +66,8 @@ commands to get set up:
 ```
 git clone https://github.com/kentcdodds/asts-workshop.git
 cd asts-workshop
-yarn start --silent setup
-yarn start --silent autofill-email YOUR_EMAIL@DOMAIN.COM
+yarn run setup --silent
+yarn start --silent "autofill-email YOUR_EMAIL@DOMAIN.COM"
 ```
 
 > Replace `YOUR_EMAIL@DOMAIN.COM` with your email address

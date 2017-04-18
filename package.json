@@ -45,7 +45,8 @@
   "scripts": {
     "start": "nps",
     "test": "nps test",
-    "precommit": "nps precommit"
+    "precommit": "nps precommit",
+    "setup": "node ./scripts/verify && node ./scripts/install && nps validate"
   },
   "LICENSE": "MIT"
 }
