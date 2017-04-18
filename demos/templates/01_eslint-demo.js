@@ -1,5 +1,7 @@
 // WORKSHOP_START
-module.exports = {}
+module.exports = {
+  // Disallow the use of alert
+}
 // WORKSHOP_END
 // FINAL_START
 module.exports = {
