@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transpiles __line__ to the line number 1`] = `
+"console.log(1);
+
+function log(someLine = 3) {
+  console.log('the line', someLine, 4);
+}"
+`;

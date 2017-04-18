@@ -1,61 +1,185 @@
-const {series, concurrent} = require('nps-utils')
+const {series, concurrent, commonTags} = require('nps-utils')
+
+const {oneLine} = commonTags
+
+const hiddenFromHelp = true
 
 module.exports = {
   scripts: {
-    contributors: {
-      add: 'all-contributors add',
-      generate: 'all-contributors generate',
+    default: {
+      description: 'runs the test.watch script.',
+      script: 'nps test.watch',
     },
-    default: 'nps test.watch',
-    lint: 'eslint exercises-final templates demos scripts',
+    contributors: {
+      add: {
+        description: 'run this to add yourself to the contributors table',
+        script: 'all-contributors add',
+      },
+      generate: {
+        description: oneLine`
+          run this if you've manually updated the
+          .all-contributorsrc and need to regenerate
+          the contributors table.
+        `,
+        script: 'all-contributors generate',
+      },
+    },
+    lint: {
+      hiddenFromHelp,
+      script: 'eslint exercises-final templates demos/templates scripts',
+    },
     format: {
-      templates: 'prettier-eslint --write "templates/**/*.js"',
-      exercises: 'prettier-eslint --write "exercises*/**/*.js"',
+      templates: {
+        hiddenFromHelp,
+        script: oneLine`
+          prettier-eslint
+          --write
+          "templates/**/*.js"
+          "demos/templates/**/*.js"
+        `,
+      },
+      exercises: {
+        hiddenFromHelp,
+        script: oneLine`
+          prettier-eslint
+          --write
+          "exercises*/**/*.js"
+          "demos/start/**/*.js"
+          "demos/finished/**/*.js"
+        `,
+      },
     },
     precommit: {
+      hiddenFromHelp,
       description: 'our pre-commit hook',
       script: series(
-        series.nps('format.templates', 'generate', 'lint', 'format.exercises'),
+        series.nps('format.templates', 'split', 'lint', 'format.exercises'),
         concurrent.nps('test.demos', 'test.final'),
-        'git add exercises exercises-final'
+        'git add exercises exercises-final demos/start demos/finished'
       ),
     },
     test: {
-      default: 'jest --config=exercises/jest.config.json',
+      default: {
+        description: 'run the exercises tests',
+        script: 'jest --config=exercises/jest.config.json --coverage',
+      },
+      changed: {
+        description: oneLine`
+          run the exercises tests for files which
+          have changed since the last commit
+        `,
+        script: 'jest --config=exercises/jest.config.json --onlyChanged',
+      },
+      watch: {
+        description: 'run the exercises tests in watch mode',
+        script: 'jest --config=exercises/jest.config.json --watch',
+      },
+      demos: jest('demos/finished/jest.config.json', {hiddenFromHelp}),
+      final: jest('exercises-final/jest.config.json', {hiddenFromHelp}),
+      all: {
+        hiddenFromHelp,
+        script: concurrent.nps('test.demos', 'test.final'),
+      },
+    },
+    dev: {
+      exercises: {
+        hiddenFromHelp,
+        script: concurrent.nps('split.watch', 'test.final.watch'),
+      },
       demos: {
-        default: 'jest --config=demos/jest.config.json',
-        watch: 'jest --config=demos/jest.config.json --watch',
-      },
-      changed: 'jest --config=exercises/jest.config.json --onlyChanged',
-      watch: 'jest --config=exercises/jest.config.json --watch',
-      final: {
-        default: 'jest --config=exercises-final/jest.config.json',
-        watch: 'jest --config=exercises-final/jest.config.json --watch',
+        hiddenFromHelp,
+        script: concurrent.nps('split.watch', 'test.demos.watch'),
       },
     },
-    dev: series(
-      'nps generate',
-      concurrent.nps('generate.watch', 'test.final.watch')
-    ),
-    generate: {
-      watch: 'onchange "templates/**/*.*" --initial -- nps generate',
-      default: 'split-guide generate --silent-success',
+    split: {
+      default: {
+        hiddenFromHelp,
+        script: concurrent.nps('split.exercises', 'split.demos'),
+      },
+      exercises: {
+        default: {
+          hiddenFromHelp,
+          script: 'split-guide generate --silent-success',
+        },
+        watch: {
+          hiddenFromHelp,
+          script: oneLine`
+            onchange
+            "templates/**/*.*"
+            --initial
+            --
+            nps split.exercises
+          `,
+        },
+      },
+      demos: {
+        default: {
+          hiddenFromHelp,
+          script: oneLine`
+            split-guide generate
+            --templates-dir demos/templates
+            --exercises-dir demos/start
+            --exercises-final-dir demos/finished
+            --silent-success
+          `,
+        },
+        watch: {
+          hiddenFromHelp,
+          script: oneLine`
+            onchange
+            "demos/templates/**/*.*"
+            --initial
+            --
+            nps split.demos
+          `,
+        },
+      },
     },
-    autofillEmail: series(
-      'node ./scripts/autofill-feedback-email',
-      'git commit -am "autofill-email"'
-    ),
+    autofillEmail: {
+      description: 'autofills the feedback links with your email address',
+      script: series(
+        'node ./scripts/autofill-feedback-email',
+        'git commit -am "autofill-email"'
+      ),
+    },
     validate: {
-      script: series.nps('lint', 'test.final'),
-      full: concurrent.nps('validate.generated', 'test.demos'),
-      generated: series.nps('generate', 'lint', 'test.final'),
+      default: {
+        hiddenFromHelp,
+        script: series.nps('lint', 'test.all'),
+      },
+      full: {
+        hiddenFromHelp,
+        script: concurrent.nps('split', 'lint', 'test.all'),
+      },
     },
-    setup: series(
-      'node ./scripts/verify',
-      'node ./scripts/install',
-      'nps validate'
-    ),
+    setup: {
+      description: oneLine`
+        This will do a few things for you:
+        1) Verify you're system is setup correctly
+        2) Install all project dependencies
+        3) Verify the project is ready to run
+      `,
+      script: series(
+        'node ./scripts/verify',
+        'node ./scripts/install',
+        'nps validate'
+      ),
+    },
   },
+}
+
+function jest(config, assign = {}) {
+  return {
+    default: Object.assign(
+      {script: `jest --config=${config} --coverage`},
+      assign
+    ),
+    changed: Object.assign(
+      {script: `jest --config=${config} --onlyChanged`},
+      assign
+    ),
+    watch: Object.assign({script: `jest --config=${config} --watch`}, assign),
+  }
 }
 
 // this is not transpiled

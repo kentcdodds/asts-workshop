@@ -1,0 +1,16 @@
+// COMMENT_START
+// this is a template file
+// the fact that it is invalid
+// JSON is irrelevant :)
+// COMMENT_END
+{
+  "testEnvironment": "node",
+  "roots": [
+    // WORKSHOP_START
+    "demos/start"
+    // WORKSHOP_END
+    // FINAL_START
+    "demos/finished"
+    // FINAL_END
+  ]
+}

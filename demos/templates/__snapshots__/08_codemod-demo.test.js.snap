@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`codemods imports of CommonJS modules 1`] = `
+"import { request as fetch } from 'twitter'
+import { request as blah } from 'twitter'
+import * as twitter from 'twitter'
+import log from 'logger'
+
+fetch('/user/kentcdodds').then(user => {
+  log(user)
+})
+
+twitter.request('/user/captainsafia').then(user => {
+  log(user)
+})
+
+twitter.delete('/account')"
+`;

@@ -11,10 +11,9 @@ function twitterFetchToRequest(babel) {
         if (value !== 'twitter') {
           return
         }
-        const {
-          namespaceSpecifier,
-          namedSpecifiers,
-        } = splitSpecifiers(path.get('specifiers'))
+        const {namespaceSpecifier, namedSpecifiers} = splitSpecifiers(
+          path.get('specifiers'),
+        )
         const fetchSpecifier = namedSpecifiers.find(
           specifier => specifier.node.imported.name === 'fetch',
         )

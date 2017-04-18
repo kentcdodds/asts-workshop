@@ -11,8 +11,8 @@ module.exports = {
     const sourceCode = context.getSourceCode()
     return {
       ConditionalExpression(node) {
-        const isNeccessary = node.consequent.type !== 'Literal' ||
-          node.consequent.value !== true
+        const isNeccessary =
+          node.consequent.type !== 'Literal' || node.consequent.value !== true
         if (isNeccessary) {
           return
         }

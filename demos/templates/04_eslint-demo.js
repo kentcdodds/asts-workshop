@@ -8,6 +8,7 @@ module.exports = {
     schema: [],
   },
   create(context) {
+    // FINAL_START
     const identifiers = new Set()
 
     function report(node, methodName) {
@@ -49,11 +50,7 @@ module.exports = {
             let methodName = 'the method-specific API'
             if (identifier.parent.parent.type === 'CallExpression') {
               const {
-                parent: {
-                  parent: {
-                    arguments: [{properties}],
-                  },
-                },
+                parent: {parent: {arguments: [{properties}]}},
               } = identifier
               const methodProperty = properties.find(p => {
                 return p.key.name === 'method' && p.value.type === 'Literal'
@@ -69,10 +66,13 @@ module.exports = {
       },
     }
     function isRequireCall(callExpression) {
-      return callExpression.type === 'CallExpression' &&
+      return (
+        callExpression.type === 'CallExpression' &&
         callExpression.callee.name === 'require' &&
         callExpression.arguments.length === 1 &&
         callExpression.arguments[0].value === 'bucket-streams-api'
+      )
     }
+    // FINAL_END
   },
 }

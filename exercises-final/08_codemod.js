@@ -23,8 +23,8 @@ function importCommonJSPlugin() {
 
         const {node: {value: source}} = path.get('source')
 
-        const specifiersExist = Boolean(namedSpecifiers.length) ||
-          Boolean(namespaceSpecifier)
+        const specifiersExist =
+          Boolean(namedSpecifiers.length) || Boolean(namespaceSpecifier)
         const isCJS = isCommonJSModule(source, file.opts.filename)
         if (!specifiersExist || !isCJS) {
           return
