@@ -19,8 +19,14 @@ Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code_
 
 ## Welcome
 
-Welcome to the JavaScript ASTs workshop. In this workshop, you'll learn stuff
-... TODO!
+By coding along with us for this two day workshop you’ll:
+
+- Learn what can be done with Abstract Syntax Trees.
+- Explore what tools are available for learning about and developing with ASTs.
+- Discover what ASTs are.
+- Understand why and how to write custom ESLint rules
+- Write custom Babel plugins
+- Learn why and how to write a codemod with Babel
 
 ## Workshop workflow
 
