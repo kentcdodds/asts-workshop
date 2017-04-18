@@ -54,7 +54,7 @@ module.exports = {
       description: 'our pre-commit hook',
       script: series(
         series.nps('format.templates', 'split', 'lint', 'format.exercises'),
-        concurrent.nps('test.demos', 'test.final'),
+        concurrent.nps('test.demos.finished', 'test.final'),
         'git add exercises exercises-final demos/start demos/finished'
       ),
     },
@@ -74,21 +74,27 @@ module.exports = {
         description: 'run the exercises tests in watch mode',
         script: 'jest --config=exercises/jest.config.json --watch',
       },
-      demos: jest('demos/finished/jest.config.json', {hiddenFromHelp}),
+      demos: {
+        start: jest('demos/start/jest.config.json', {hiddenFromHelp}),
+        finished: jest('demos/finished/jest.config.json', {hiddenFromHelp}),
+      },
       final: jest('exercises-final/jest.config.json', {hiddenFromHelp}),
       all: {
         hiddenFromHelp,
-        script: concurrent.nps('test.demos', 'test.final'),
+        script: concurrent.nps('test.demos.finished', 'test.final'),
       },
     },
     dev: {
       exercises: {
         hiddenFromHelp,
-        script: concurrent.nps('split.watch', 'test.final.watch'),
+        script: concurrent.nps('split.exercises.watch', 'test.final.watch'),
       },
       demos: {
         hiddenFromHelp,
-        script: concurrent.nps('split.watch', 'test.demos.watch'),
+        script: concurrent.nps(
+          'split.demos.watch',
+          'test.demos.finished.watch'
+        ),
       },
     },
     split: {
