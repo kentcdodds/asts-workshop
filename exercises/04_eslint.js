@@ -13,54 +13,5 @@ module.exports = {
     // Leaving that ^ for you, you're welcome :)
     // You'll want to use it to keep track of
     // reference identifiers
-    return {
-      ImportDeclaration(node) {
-        if (node.source.value !== 'twitter') {
-          return
-        }
-        const badImportSpecifiers = node.specifiers.filter(
-          s => s.type === 'ImportSpecifier' && s.imported.name === 'fetch',
-        )
-        if (badImportSpecifiers.length) {
-          badImportSpecifiers.forEach(badSpecifier => {
-            context.report({
-              node: badSpecifier,
-              message: 'The twitter `fetch` API ' +
-                'has been deprecated. Use `request`',
-              fix(fixer) {
-                return fixer.replaceText(badSpecifier, 'request')
-              },
-            })
-          })
-        } else {
-          const namespaceSpecifier = node.specifiers.find(
-            s => s.type === 'ImportNamespaceSpecifier',
-          )
-          const [variable] = context.getDeclaredVariables(namespaceSpecifier)
-          if (variable) {
-            variable.references.forEach(reference => {
-              identifiers.add(reference.identifier)
-            })
-          }
-        }
-      },
-      'Program:exit'() {
-        Array.from(identifiers).forEach(identifier => {
-          const {parent: {property}, parent} = identifier
-          if (
-            property.name === 'fetch' && parent.parent.type === 'CallExpression'
-          ) {
-            context.report({
-              node: property,
-              message: 'The twitter `fetch` API ' +
-                'has been deprecated. Use `request`',
-              fix(fixer) {
-                return fixer.replaceText(property, 'request')
-              },
-            })
-          }
-        })
-      },
-    }
   },
 }

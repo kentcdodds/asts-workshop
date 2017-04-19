@@ -15,6 +15,7 @@ module.exports = {
     // You'll want to use it to keep track of
     // reference identifiers
     // WORKSHOP_END
+    // FINAL_START
     return {
       ImportDeclaration(node) {
         if (node.source.value !== 'twitter') {
@@ -64,5 +65,6 @@ module.exports = {
         })
       },
     }
+    // FINAL_END
   },
 }
