@@ -4,8 +4,8 @@ Here's some info about how the workshop should go...
 
 ## Order of things...
 
-1. Pre-quizzes
-2. Tests
+1. Demo
+2. Exercise
 3. Elaboration and Feedback Form
 4. ? Help others
 5. ? Make pull requests
