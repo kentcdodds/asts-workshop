@@ -1,5 +1,5 @@
 const {RuleTester} = require('eslint')
-const rule = require('./no-console-4')
+const rule = require('./no-console-5')
 
 const ruleTester = new RuleTester()
 ruleTester.run('no-console', rule, {

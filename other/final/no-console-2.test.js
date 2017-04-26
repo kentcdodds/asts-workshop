@@ -1,9 +1,9 @@
 const {RuleTester} = require('eslint')
-const rule = require('./no-console-0')
+const rule = require('./no-console-2')
 
 const ruleTester = new RuleTester()
 ruleTester.run('no-console', rule, {
-  valid: ['info()'],
+  valid: ['foo.console()', 'console()', 'info()', 'console.baz()'],
   invalid: [
     invalid('console.log()'),
     invalid('console.info()'),

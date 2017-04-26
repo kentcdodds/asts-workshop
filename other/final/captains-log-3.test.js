@@ -19,16 +19,9 @@ test('transpiles console.log calls to include the function name', () => {
         console.log(a, b)
         return a * b
       }
-
-      const divide = function(a, b) {
-        console.log(a, b)
-        return a / b
-      }
-
       add(1, 2)
       subtract(2, 1)
       multiply(3, 4)
-      divide(25, 5)
       console.log('sup dawg')
     `,
   ).trim()

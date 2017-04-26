@@ -25,6 +25,7 @@
     "eslint": "^3.19.0",
     "eslint-config-kentcdodds": "^12.2.1",
     "eslint-plugin-babel": "^4.1.1",
+    "file-exists": "^3.0.2",
     "glob": "^7.1.1",
     "handlebars": "^4.0.6",
     "husky": "^0.13.3",
@@ -32,6 +33,7 @@
     "jest": "^19.0.2",
     "lint-staged": "^3.4.0",
     "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
     "npm-run-all": "^4.0.2",
     "nps": "^5.0.6",
     "nps-utils": "^1.2.0",
@@ -41,6 +43,7 @@
     "pretty-format": "^19.0.0",
     "recast": "^0.12.3",
     "replace-in-file": "^2.5.0",
+    "rimraf": "^2.6.1",
     "split-guide": "^3.0.0",
     "strip-indent": "^2.0.0"
   },
@@ -48,10 +51,13 @@
     "start": "nps",
     "test": "nps test",
     "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\"",
-    "setup": "node ./scripts/verify && node ./scripts/install && nps validate"
+    "setup": "node ./scripts/verify && node ./scripts/install && nps exercise.eslint.0 exercise.babel.0 && nps validate"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "roots": [
+      "exercises"
+    ]
   },
   "lint-staged": {
     "*.js": [

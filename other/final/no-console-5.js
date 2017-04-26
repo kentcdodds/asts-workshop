@@ -7,6 +7,7 @@ module.exports = {
       category: 'Best Practices',
       recommended: true,
     },
+    fixable: 'code',
     schema: [
       {
         type: 'object',
@@ -37,10 +38,7 @@ module.exports = {
       'Program:exit'() {
         consoleUsage.forEach(identifier => {
           if (isDisallowedFunctionCall(identifier)) {
-            context.report({
-              node: identifier.parent.property,
-              message: 'Using console is not allowed',
-            })
+            report(identifier.parent.property, identifier)
           } else {
             const variableDeclaratorParent = findParent(
               identifier,
@@ -62,15 +60,22 @@ module.exports = {
                 ) {
                   return
                 }
-                context.report({
-                  node: reference.identifier.parent.property,
-                  message: 'Using console is not allowed',
-                })
+                report(reference.identifier.parent.property, identifier)
               })
             }
           }
         })
       },
+    }
+
+    function report(property, consoleObject) {
+      context.report({
+        node: property,
+        message: 'Using console is not allowed',
+        fix(fixer) {
+          return fixer.replaceText(consoleObject, 'logger')
+        },
+      })
     }
 
     function isDisallowedFunctionCall(identifier) {
@@ -107,10 +112,10 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimative(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
     })
   )
 }
-function isPrimative(val) {
+function isPrimitive(val) {
   return val == null || /^[sbn]/.test(typeof val)
 }

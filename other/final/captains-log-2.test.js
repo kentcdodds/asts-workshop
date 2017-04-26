@@ -14,14 +14,8 @@ test('transpiles console.log calls to include the function name', () => {
         console.log(a, b)
         return a - b
       }
-
-      const multiply = (a, b) => {
-        console.log(a, b)
-        return a * b
-      }
       add(1, 2)
       subtract(2, 1)
-      multiply(3, 4)
       console.log('sup dawg')
     `,
   ).trim()

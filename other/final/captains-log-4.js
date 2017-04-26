@@ -64,10 +64,10 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimative(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
     })
   )
 }
-function isPrimative(val) {
+function isPrimitive(val) {
   return val == null || /^[sbn]/.test(typeof val)
 }

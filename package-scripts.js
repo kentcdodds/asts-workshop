@@ -8,7 +8,12 @@ module.exports = {
   scripts: {
     default: {
       description: 'runs the test.watch script.',
-      script: 'nps test.watch',
+      script: 'nps test.watchAll',
+    },
+    exercise: {
+      eslint: getExercises('no-console', 'eslint'),
+      babel: getExercises('captains-log', 'babel'),
+      codemod: getExercises('TODO', 'codemod'),
     },
     contributors: {
       add: {
@@ -26,7 +31,7 @@ module.exports = {
     },
     lint: {
       hiddenFromHelp,
-      script: 'eslint exercises',
+      script: 'eslint other/final',
     },
     test: {
       default: {
@@ -43,6 +48,14 @@ module.exports = {
       watch: {
         description: 'run the exercises tests in watch mode',
         script: 'jest --watch',
+      },
+      watchAll: {
+        description: 'run the exercises tests in watch mode',
+        script: 'jest --watchAll',
+      },
+      final: {
+        default: 'jest --config=other/final/jest.config.json',
+        watch: 'jest --config=other/final/jest.config.json --watch',
       },
     },
     split: {
@@ -75,20 +88,26 @@ module.exports = {
         },
       },
     },
-    autofillEmail: {
-      description: 'autofills the feedback links with your email address',
-      script: series(
-        'node ./scripts/autofill-feedback-email',
-        'git commit -am "autofill-email"'
-      ),
-    },
     validate: {
       default: {
         hiddenFromHelp,
-        script: series.nps('lint', 'test'),
+        script: series.nps('lint', 'test.final'),
       },
     },
   },
+}
+
+function getExercises(exerciseName, scriptName) {
+  return [0, 1, 2, 3, 4, 5, 6].reduce((acc, number) => {
+    acc[number] = oneLine`
+      node
+      ./scripts/copy-exercise.js
+      ${exerciseName}
+      ${number}
+      ${scriptName}
+    `
+    return acc
+  }, {})
 }
 
 // this is not transpiled

@@ -68,6 +68,7 @@ git clone https://github.com/kentcdodds/asts-workshop.git
 cd asts-workshop
 yarn run setup --silent
 node scripts/autofill-feedback-email.js YOUR_EMAIL@DOMAIN.COM
+git commit -am "ready to go"
 ```
 
 > Replace `YOUR_EMAIL@DOMAIN.COM` with your email address

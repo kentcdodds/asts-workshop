@@ -7,8 +7,25 @@ module.exports = {
       category: 'Best Practices',
       recommended: true,
     },
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          allowedMethods: {
+            type: 'array',
+            items: {
+              enum: ['log', 'info', 'warn', 'error', 'dir'],
+            },
+            minItems: 1,
+            uniqueItems: true,
+          },
+        },
+      },
+    ],
   },
   create(context) {
+    const config = context.options[0] || {}
+    const allowedMethods = config.allowedMethods || []
     return {
       Identifier(node) {
         if (
@@ -18,7 +35,9 @@ module.exports = {
               type: 'MemberExpression',
               parent: {type: 'CallExpression'},
               property: {
-                name: val => disallowedMethods.includes(val),
+                name: val =>
+                  !allowedMethods.includes(val) &&
+                  disallowedMethods.includes(val),
               },
             },
           })
@@ -44,11 +63,11 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimative(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
     })
   )
 }
 
-function isPrimative(val) {
+function isPrimitive(val) {
   return val == null || /^[sbn]/.test(typeof val)
 }

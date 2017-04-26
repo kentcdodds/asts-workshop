@@ -2067,6 +2067,10 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
+file-exists@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/file-exists/-/file-exists-3.0.2.tgz#1d6b3c197810b43f85892e7eed478a637b1ab614"
+
 file-type@^3.6.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/file-type/-/file-type-3.9.0.tgz#257a078384d1db8087bc449d107d52a52672b9e9"

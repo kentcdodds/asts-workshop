@@ -20,32 +20,15 @@ export default function(babel) {
           return
         }
         let prefix = ''
-        const functionName = getFunctionName(path)
-        if (functionName) {
-          prefix += functionName
+        const parentFunction = path.findParent(t.isFunctionDeclaration)
+        if (parentFunction) {
+          prefix += parentFunction.node.id.name
         }
         const start = path.node.loc.start
         prefix += ` ${start.line}:${start.column}`
         path.node.arguments.unshift(t.stringLiteral(prefix.trim()))
       },
     },
-  }
-
-  function getFunctionName(path) {
-    const parentFunction = path.findParent(parent => {
-      return (
-        t.isFunctionDeclaration(parent) || t.isArrowFunctionExpression(parent)
-      )
-    })
-    if (!parentFunction) {
-      return null
-    }
-    if (deepEqual(parentFunction, {node: {id: t.isIdentifier}})) {
-      return parentFunction.node.id.name
-    } else if (t.isVariableDeclarator(parentFunction.parent)) {
-      return parentFunction.parent.id.name
-    }
-    return null
   }
 }
 
@@ -59,10 +42,10 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimative(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
     })
   )
 }
-function isPrimative(val) {
+function isPrimitive(val) {
   return val == null || /^[sbn]/.test(typeof val)
 }
