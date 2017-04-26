@@ -19,7 +19,7 @@ export default function(babel) {
             )
             binding.referencePaths.forEach(referencePath => {
               if (
-                deepEqual(referencePath, {
+                looksLike(referencePath, {
                   parentPath: {
                     type: 'MemberExpression',
                     parentPath: {
@@ -45,7 +45,7 @@ export default function(babel) {
       },
       CallExpression(path, {file}) {
         if (
-          !deepEqual(path, {
+          !looksLike(path, {
             node: {
               callee: {name: '$'},
             },
@@ -99,7 +99,7 @@ export default function(babel) {
 }
 
 function isSupportedJQueryFunctionCall(memberExpression) {
-  return deepEqual(memberExpression, {
+  return looksLike(memberExpression, {
     key: 'callee',
     node: {
       property: {
@@ -109,7 +109,7 @@ function isSupportedJQueryFunctionCall(memberExpression) {
   })
 }
 
-function deepEqual(a, b) {
+function looksLike(a, b) {
   return (
     a &&
     b &&
@@ -119,7 +119,7 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : looksLike(aVal, bVal)
     })
   )
 }

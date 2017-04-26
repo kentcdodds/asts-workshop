@@ -29,7 +29,7 @@ module.exports = {
     const consoleUsage = []
     return {
       Identifier(node) {
-        if (!deepEqual(node, {name: 'console'})) {
+        if (!looksLike(node, {name: 'console'})) {
           return
         }
         consoleUsage.push(node)
@@ -52,7 +52,7 @@ module.exports = {
                 .references.slice(1)
               references.forEach(reference => {
                 if (
-                  !deepEqual(reference, {
+                  !looksLike(reference, {
                     identifier: {
                       parent: {
                         property: isDisallowedFunctionCall,
@@ -74,7 +74,7 @@ module.exports = {
     }
 
     function isDisallowedFunctionCall(identifier) {
-      return deepEqual(identifier, {
+      return looksLike(identifier, {
         parent: {
           type: 'MemberExpression',
           parent: {type: 'CallExpression'},
@@ -97,7 +97,7 @@ function findParent(node, test) {
   return null
 }
 
-function deepEqual(a, b) {
+function looksLike(a, b) {
   return (
     a &&
     b &&
@@ -107,7 +107,7 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : looksLike(aVal, bVal)
     })
   )
 }

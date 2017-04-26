@@ -12,7 +12,7 @@ module.exports = {
     return {
       Identifier(node) {
         if (
-          !deepEqual(node, {
+          !looksLike(node, {
             name: 'console',
             parent: {
               type: 'MemberExpression',
@@ -34,7 +34,7 @@ module.exports = {
   },
 }
 
-function deepEqual(a, b) {
+function looksLike(a, b) {
   return (
     a &&
     b &&
@@ -44,7 +44,7 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : looksLike(aVal, bVal)
     })
   )
 }

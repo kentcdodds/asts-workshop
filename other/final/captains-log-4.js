@@ -6,7 +6,7 @@ export default function(babel) {
     visitor: {
       CallExpression(path) {
         if (
-          !deepEqual(path, {
+          !looksLike(path, {
             node: {
               callee: {
                 type: 'MemberExpression',
@@ -42,7 +42,7 @@ export default function(babel) {
     if (!parentFunction) {
       return null
     }
-    if (deepEqual(parentFunction, {node: {id: t.isIdentifier}})) {
+    if (looksLike(parentFunction, {node: {id: t.isIdentifier}})) {
       return parentFunction.node.id.name
     } else if (
       t.isVariableDeclarator(parentFunction.parent) ||
@@ -54,7 +54,7 @@ export default function(babel) {
   }
 }
 
-function deepEqual(a, b) {
+function looksLike(a, b) {
   return (
     a &&
     b &&
@@ -64,7 +64,7 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : looksLike(aVal, bVal)
     })
   )
 }

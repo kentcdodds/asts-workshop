@@ -6,7 +6,7 @@ export default function(babel) {
     visitor: {
       CallExpression(path) {
         if (
-          !deepEqual(path, {
+          !looksLike(path, {
             node: {
               callee: {name: '$'},
             },
@@ -55,7 +55,7 @@ export default function(babel) {
   }
 }
 
-function deepEqual(a, b) {
+function looksLike(a, b) {
   return (
     a &&
     b &&
@@ -65,7 +65,7 @@ function deepEqual(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimitive(bVal) ? bVal === aVal : deepEqual(aVal, bVal)
+      return isPrimitive(bVal) ? bVal === aVal : looksLike(aVal, bVal)
     })
   )
 }
