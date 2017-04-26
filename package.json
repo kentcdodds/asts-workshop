@@ -51,7 +51,7 @@
     "start": "nps",
     "test": "nps test",
     "precommit": "lint-staged && opt --in precommit --exec \"npm start validate\"",
-    "setup": "node ./scripts/verify && node ./scripts/install && nps exercise.eslint.0 exercise.babel.0 && nps validate"
+    "setup": "node ./scripts/verify && node ./scripts/install && nps exercise.eslint.0 && nps validate"
   },
   "jest": {
     "testEnvironment": "node",
