@@ -2,5 +2,11 @@
 
 exports[`transpiles jquery calls to raw DOM APIs 1`] = `
 "el.style.display = \\"none\\"
-foo.hide()"
+foo.hide()
+
+el.style.display = \\"\\"
+bar.show()
+
+el.classList.add(className)
+foo.addClass(otherClassThing)"
 `;

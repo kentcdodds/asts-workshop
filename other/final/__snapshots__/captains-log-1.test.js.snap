@@ -2,15 +2,15 @@
 
 exports[`transpiles console.log calls to include contextual info 1`] = `
 "function add(a, b) {
-  console.log('2:2', a, b);
-  return a + b;
+  console.log(\\"2:2\\", a, b)
+  return a + b
 }
 
 function subtract(a, b) {
-  console.log('7:2', a, b);
-  return a - b;
+  console.log(\\"7:2\\", a, b)
+  return a - b
 }
-add(1, 2);
-subtract(2, 1);
-console.log('12:0', 'sup dawg');"
+add(1, 2)
+subtract(2, 1)
+console.log(\\"12:0\\", 'sup dawg')"
 `;

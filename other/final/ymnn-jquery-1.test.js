@@ -1,8 +1,9 @@
 import stripIndent from 'strip-indent'
 import * as babel from 'babel-core'
-import captainsLog from './captains-log-1'
+import * as recast from 'recast'
+import ymnnJquery from './ymnn-jquery-1'
 
-test('transpiles jquery-hide calls to raw DOM APIs', () => {
+test('transpiles jquery calls to raw DOM APIs', () => {
   const source = stripIndent(
     `
       $(el).hide()
@@ -15,8 +16,10 @@ test('transpiles jquery-hide calls to raw DOM APIs', () => {
 
 function transpile(source) {
   const {code} = babel.transform(source, {
+    parserOpts: {parser: recast.parse},
+    generatorOpts: {generator: recast.print},
     babelrc: false,
-    plugins: [captainsLog],
+    plugins: [ymnnJquery],
   })
   return code
 }
