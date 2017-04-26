@@ -51,7 +51,7 @@ if (testExists) {
 
 const finalExists = fileExists.sync(finalPath)
 if (finalExists) {
-  fs.writeFileSync(exercisePath, `${banner}\n\n${finalContents}\n\n${footer}`)
+  fs.writeFileSync(exercisePath, `${banner}\n\n${finalContents}`)
 }
 
 const snapshotExists = fileExists.sync(finalSnapshotPath)
