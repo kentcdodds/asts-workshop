@@ -44,4 +44,52 @@ git diff HEAD:other/final/no-console-2.js other/final/no-console-3.js
 
 - The ESLint [`schema`](http://eslint.org/docs/developer-guide/working-with-rules#options-schemas)
 - How to get options from the schema
--
+
+### 3
+
+```
+git diff HEAD:other/final/no-console-3.js other/final/no-console-4.js
+```
+
+- Issues with scope
+- `context.getDeclaredVariables(variableDeclarator)[0].references.slice(1)`
+  (returns an array because you can provide it a `VariableDeclaration` which could
+  have multiple declarators. Because we're giving it a single declarator, it will
+  always return an array of one item).
+- `findParent` helper for finding the variable declarator
+
+### 4
+
+- The `fix` function
+- Requires `fixable` in the `meta` property
+- Update the ESLint code so you can see the diff in your fixer. See `copy.md`
+
+```
+git diff HEAD:other/final/no-console-4.js other/final/no-console-5.js
+```
+
+## Babel `captains-log`
+
+### 0
+
+```
+git diff HEAD:other/final/captains-log-0.js other/final/captains-log-1.js
+```
+
+### 1
+
+```
+git diff HEAD:other/final/captains-log-1.js other/final/captains-log-2.js
+```
+
+### 2
+
+```
+git diff HEAD:other/final/captains-log-2.js other/final/captains-log-3.js
+```
+
+### 3
+
+```
+git diff HEAD:other/final/captains-log-3.js other/final/captains-log-4.js
+```

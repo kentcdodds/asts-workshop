@@ -30,7 +30,7 @@ module.exports = {
     const consoleUsage = []
     return {
       Identifier(node) {
-        if (!looksLike(node, {name: 'console'})) {
+        if (node.name !== 'console') {
           return
         }
         consoleUsage.push(node)
@@ -116,6 +116,7 @@ function looksLike(a, b) {
     })
   )
 }
+
 function isPrimitive(val) {
   return val == null || /^[sbn]/.test(typeof val)
 }
