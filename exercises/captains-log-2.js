@@ -2,7 +2,7 @@ export default function(babel) {
   const {types: t} = babel
 
   return {
-    name: 'ast-transform', // not required
+    name: 'captains-log',
     visitor: {
       CallExpression(path) {
         if (
