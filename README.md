@@ -91,41 +91,23 @@ too.
 
 ## Running the workshop
 
-_You wont be running the demos directly, those are intended to be part of the
-instruction._
-
-Once you have everything installed, you are ready to run some tests. There are
-two directories with tests in them: `exercises` and `exercises-final`. The
-`exercises-final` directory is like a cheat sheet (try to not use it). All of
-the tests contain the required code to make the tests pass. You will need to
-edit the tests in the `exercises` directory, and make the tests pass.
-
-To run the tests, in your terminal run:
+The workshop is set up to place the right exercise in the `exercises` directory
+when you run a special script. This way you always know exactly where to go.
+For example, to start the first ESLint exercise:
 
 ```
-yarn test
+npm start exercise.eslint.0
 ```
 
-If you want the tests to continue running as you make changes, run:
+You'll notice that this will create an `exercises` directory with the source
+file and tests in it. Your job is to make that test pass! To run the tests, run:
 
 ```
-yarn start test.watch
+npm start
 ```
 
-This will start `jest` in its interactive watch mode ([learn more][watch-mode]).
-If you see a bunch of failures, make sure you're in "only changed" mode by
-clicking the <kbd>o</kbd> key. There should not be any tests run at this point.
-Your job is to go into each test file in `exercises` and make the tests pass. As
-you make changes, jest will run the file's tests. Once you have written the
-required code, the tests will pass, and you can move on.
-
-**Note:** You may prefer to run the `yarn start test.changed` script which will
-run the tests only once. This will allow you to avoid the **learning crutch** of
-immediate feedback that you get from the watch mode. But it's up to you!
-
-> Protip: we're using [nps][nps] in this project. If you want to type less, then
-> you can install nps globally: `yarn global add nps` (or `npm i -g nps`) and
-> then you can run `nps` instead of `npm start`
+> Tip: You could run `npm start` in a separate terminal window, and use another
+> one to run the `npm start exercise...` scripts
 
 ### Contributing
 
