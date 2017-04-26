@@ -2,12 +2,12 @@
 
 exports[`transpiles console.log calls to include the function name 1`] = `
 "function add(a, b) {
-  console.log('2:2', a, b);
+  console.log('add 2:2', a, b);
   return a + b;
 }
 
 function subtract(a, b) {
-  console.log('7:2', a, b);
+  console.log('subtract 7:2', a, b);
   return a - b;
 }
 add(1, 2);

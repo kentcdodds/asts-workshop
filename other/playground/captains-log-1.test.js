@@ -1,6 +1,6 @@
 import stripIndent from 'strip-indent'
 import * as babel from 'babel-core'
-import captainsLog from './captains-log-0'
+import captainsLog from './captains-log-1'
 
 test('transpiles console.log calls to include the function name', () => {
   const source = stripIndent(

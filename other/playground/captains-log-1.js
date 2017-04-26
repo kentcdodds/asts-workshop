@@ -19,10 +19,14 @@ export default function(babel) {
         ) {
           return
         }
+        let prefix = ''
+        const parentFunction = path.findParent(t.isFunctionDeclaration)
+        if (parentFunction) {
+          prefix += parentFunction.node.id.name
+        }
         const start = path.node.loc.start
-        path.node.arguments.unshift(
-          t.stringLiteral(`${start.line}:${start.column}`),
-        )
+        prefix += ` ${start.line}:${start.column}`
+        path.node.arguments.unshift(t.stringLiteral(prefix.trim()))
       },
     },
   }
