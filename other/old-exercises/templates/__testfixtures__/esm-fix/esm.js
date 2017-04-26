@@ -1,3 +1,0 @@
-export {foo}
-
-function foo() {}

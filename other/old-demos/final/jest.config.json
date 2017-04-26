@@ -1,6 +1,0 @@
-{
-  "testEnvironment": "node",
-  "roots": [
-    "demos/finished"
-  ]
-}
