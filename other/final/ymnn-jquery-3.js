@@ -23,35 +23,33 @@ export default function(babel) {
           return
         }
         const jqueryFunction = path.parentPath.node.property.name
+        const pathToReplace = path.parentPath.parentPath
+        const [el] = path.node.arguments
         if (jqueryFunction === 'addClass') {
-          updateAddClass(path)
+          updateAddClass(el, pathToReplace)
         } else {
-          updateDisplay(path, jqueryFunction)
+          updateDisplay(el, pathToReplace, jqueryFunction)
         }
       },
     },
   }
 
-  function updateDisplay(path, jqueryFunction) {
-    const overallPath = path.parentPath.parentPath
-    const [el] = path.node.arguments
+  function updateDisplay(el, pathToReplace, jqueryFunction) {
     const templateString = `ELEMENT.style.display = DISPLAY;`
     const assignment = template(templateString)({
       ELEMENT: el,
       DISPLAY: t.stringLiteral(jqueryFunction === 'show' ? '' : 'none'),
     })
-    overallPath.replaceWith(assignment)
+    pathToReplace.replaceWith(assignment)
   }
 
-  function updateAddClass(path) {
-    const overallPath = path.parentPath.parentPath
-    const [el] = path.node.arguments
+  function updateAddClass(el, pathToReplace) {
     const templateString = `ELEMENT.classList.add(CLASS_NAME);`
     const assignment = template(templateString)({
       ELEMENT: el,
-      CLASS_NAME: overallPath.node.arguments,
+      CLASS_NAME: pathToReplace.node.arguments,
     })
-    overallPath.replaceWith(assignment)
+    pathToReplace.replaceWith(assignment)
   }
 }
 
