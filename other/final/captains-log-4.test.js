@@ -2,7 +2,7 @@ import stripIndent from 'strip-indent'
 import * as babel from 'babel-core'
 import captainsLog from './captains-log-4'
 
-test('transpiles console.log calls to include the function name', () => {
+test('transpiles console.log calls to include contextual info', () => {
   const source = stripIndent(
     `
       function add(a, b) {

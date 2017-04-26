@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`transpiles console.log calls to include the function name 1`] = `
+exports[`transpiles console.log calls to include contextual info 1`] = `
 "function add(a, b) {
   console.log('add 2:2', a, b);
   return a + b;

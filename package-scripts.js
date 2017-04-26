@@ -13,7 +13,7 @@ module.exports = {
     exercise: {
       eslint: getExercises('no-console', 'eslint'),
       babel: getExercises('captains-log', 'babel'),
-      codemod: getExercises('TODO', 'codemod'),
+      codemod: getExercises('ymnn-jquery', 'codemod'),
     },
     contributors: {
       add: {

@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transpiles jquery-hide calls to raw DOM APIs 1`] = `
+"$(el).hide();
+foo.hide();"
+`;
