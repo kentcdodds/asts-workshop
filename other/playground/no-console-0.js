@@ -8,8 +8,8 @@ module.exports = {
   },
   create(context) {
     return {
-      MemberExpression(node) {
-        if (node.object.name === 'console') {
+      Identifier(node) {
+        if (node.name === 'console') {
           context.report({
             node,
             message: 'Using console is not allowed',
