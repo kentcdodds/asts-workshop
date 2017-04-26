@@ -39,7 +39,8 @@
     "pretty-format": "^19.0.0",
     "recast": "^0.12.3",
     "replace-in-file": "^2.5.0",
-    "split-guide": "^3.0.0"
+    "split-guide": "^3.0.0",
+    "strip-indent": "^2.0.0"
   },
   "scripts": {
     "start": "nps",

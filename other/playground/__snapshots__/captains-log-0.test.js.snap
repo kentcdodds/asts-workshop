@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transpiles console.log calls to include the function name 1`] = `
+"
+function add(a, b) {
+  console.log('add', a, b);
+  return a + b;
+}
+
+function subtract(a, b) {
+  console.log('subtract', a, b);
+  return a - b;
+}
+add(1, 2);
+subtract(2, 1);
+console.log('sup dawg');"
+`;
