@@ -30,11 +30,13 @@
     "husky": "^0.13.3",
     "is-builtin-module": "^1.0.0",
     "jest": "^19.0.2",
+    "lint-staged": "^3.4.0",
     "lodash": "^4.17.4",
     "npm-run-all": "^4.0.2",
     "nps": "^5.0.6",
     "nps-utils": "^1.2.0",
     "onchange": "^3.2.1",
+    "opt-cli": "^1.5.1",
     "prettier-eslint-cli": "^3.3.0",
     "pretty-format": "^19.0.0",
     "recast": "^0.12.3",
@@ -45,8 +47,17 @@
   "scripts": {
     "start": "nps",
     "test": "nps test",
-    "precommit": "nps precommit",
+    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\"",
     "setup": "node ./scripts/verify && node ./scripts/install && nps validate"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ]
   },
   "LICENSE": "MIT"
 }

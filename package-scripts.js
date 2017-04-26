@@ -26,76 +26,23 @@ module.exports = {
     },
     lint: {
       hiddenFromHelp,
-      script: 'eslint exercises-final templates demos/templates scripts',
-    },
-    format: {
-      templates: {
-        hiddenFromHelp,
-        script: oneLine`
-          prettier-eslint
-          --write
-          "templates/**/*.js"
-          "demos/templates/**/*.js"
-        `,
-      },
-      exercises: {
-        hiddenFromHelp,
-        script: oneLine`
-          prettier-eslint
-          --write
-          "exercises*/**/*.js"
-          "demos/start/**/*.js"
-          "demos/finished/**/*.js"
-        `,
-      },
-    },
-    precommit: {
-      hiddenFromHelp,
-      description: 'our pre-commit hook',
-      script: series(
-        series.nps('format.templates', 'split', 'lint', 'format.exercises'),
-        concurrent.nps('test.demos.finished', 'test.final'),
-        'git add exercises exercises-final demos/start demos/finished'
-      ),
+      script: 'eslint exercises',
     },
     test: {
       default: {
         description: 'run the exercises tests',
-        script: 'jest --config=exercises/jest.config.json --coverage',
+        script: 'jest',
       },
       changed: {
         description: oneLine`
           run the exercises tests for files which
           have changed since the last commit
         `,
-        script: 'jest --config=exercises/jest.config.json --onlyChanged',
+        script: 'jest --onlyChanged',
       },
       watch: {
         description: 'run the exercises tests in watch mode',
-        script: 'jest --config=exercises/jest.config.json --watch',
-      },
-      demos: {
-        start: jest('demos/start/jest.config.json', {hiddenFromHelp}),
-        finished: jest('demos/finished/jest.config.json', {hiddenFromHelp}),
-      },
-      final: jest('exercises-final/jest.config.json', {hiddenFromHelp}),
-      playground: jest('other/playground/jest.config.json'),
-      all: {
-        hiddenFromHelp,
-        script: concurrent.nps('test.demos.finished', 'test.final'),
-      },
-    },
-    dev: {
-      exercises: {
-        hiddenFromHelp,
-        script: concurrent.nps('split.exercises.watch', 'test.final.watch'),
-      },
-      demos: {
-        hiddenFromHelp,
-        script: concurrent.nps(
-          'split.demos.watch',
-          'test.demos.finished.watch'
-        ),
+        script: 'jest --watch',
       },
     },
     split: {
@@ -106,16 +53,12 @@ module.exports = {
       exercises: {
         default: {
           hiddenFromHelp,
-          script: 'split-guide generate --silent-success',
-        },
-        watch: {
-          hiddenFromHelp,
           script: oneLine`
-            onchange
-            "templates/**/*.*"
-            --initial
-            --
-            nps split.exercises
+            split-guide generate
+            --templates-dir other/old-exercises/templates
+            --exercises-dir other/old-exercises/exercises
+            --exercises-final-dir other/old-exercises/exercises-final
+            --silent-success
           `,
         },
       },
@@ -124,20 +67,10 @@ module.exports = {
           hiddenFromHelp,
           script: oneLine`
             split-guide generate
-            --templates-dir demos/templates
-            --exercises-dir demos/start
-            --exercises-final-dir demos/finished
+            --templates-dir other/old-demos/templates
+            --exercises-dir other/old-demos/start
+            --exercises-final-dir other/old-demos/final
             --silent-success
-          `,
-        },
-        watch: {
-          hiddenFromHelp,
-          script: oneLine`
-            onchange
-            "demos/templates/**/*.*"
-            --initial
-            --
-            nps split.demos
           `,
         },
       },
@@ -152,28 +85,10 @@ module.exports = {
     validate: {
       default: {
         hiddenFromHelp,
-        script: series.nps('lint', 'test.all'),
-      },
-      full: {
-        hiddenFromHelp,
-        script: concurrent.nps('split', 'lint', 'test.all'),
+        script: series.nps('lint', 'test'),
       },
     },
   },
-}
-
-function jest(config, assign = {}) {
-  return {
-    default: Object.assign(
-      {script: `jest --config=${config} --coverage`},
-      assign
-    ),
-    changed: Object.assign(
-      {script: `jest --config=${config} --onlyChanged`},
-      assign
-    ),
-    watch: Object.assign({script: `jest --config=${config} --watch`}, assign),
-  }
 }
 
 // this is not transpiled

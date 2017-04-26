@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transpiles console.log calls to include the function name 1`] = `
+"function add(a, b) {
+  console.log('add 2:2', a, b);
+  return a + b;
+}
+
+function subtract(a, b) {
+  console.log('subtract 7:2', a, b);
+  return a - b;
+}
+
+const multiply = (a, b) => {
+  console.log('multiply 12:2', a, b);
+  return a * b;
+};
+
+const divide = function (a, b) {
+  console.log('divide 17:2', a, b);
+  return a / b;
+};
+
+add(1, 2);
+subtract(2, 1);
+multiply(3, 4);
+divide(25, 5);
+console.log('25:0', 'sup dawg');"
+`;

@@ -5,7 +5,6 @@ function jQueryHidePlugin(babel) {
   return {
     name: 'jquery-hide',
     visitor: {
-      // FINAL_START
       CallExpression(path) {
         if (
           path.node.callee.name !== '$' ||
@@ -16,13 +15,12 @@ function jQueryHidePlugin(babel) {
         }
         const overallPath = path.parentPath.parentPath
         const [el] = path.node.arguments
-        const templateString = `ELEMENT.style.display = 'hide';`
+        const templateString = `ELEMENT.style.display = 'none';`
         const assignment = template(templateString)({
           ELEMENT: el,
         })
         overallPath.replaceWith(assignment)
       },
-      // FINAL_END
     },
   }
 }
