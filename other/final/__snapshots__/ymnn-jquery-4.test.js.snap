@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transpiles jquery calls to raw DOM APIs 1`] = `
+"el.style.display = \\"none\\"
+foo.hide()
+
+el.style.display = \\"\\"
+bar.show()
+
+el.classList.add(className)
+foo.addClass(otherClassThing)
+
+el.classList.add(someClassname)
+
+var myOtherEl = $(someEl)
+myOtherEl.unsupportedFunction()"
+`;
