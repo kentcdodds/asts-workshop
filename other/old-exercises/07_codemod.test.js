@@ -10,7 +10,7 @@ test('codemods jquery add class', () => {
   `
   const {code} = babel.transform(source, {
     parserOpts: {parser: recast.parse},
-    generatorOpts: {generator: recast.print},
+    generatorOpts: {generator: recast.print, lineTerminator: '\n'},
     babelrc: false,
     plugins: [jQueryAddClassPlugin],
   })

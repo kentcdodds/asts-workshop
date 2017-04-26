@@ -18,6 +18,15 @@
         "infra",
         "test"
       ]
+    },
+    {
+      "login": "tigermarques",
+      "name": "João Marques",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/15315098?v=3",
+      "profile": "https://github.com/tigermarques",
+      "contributions": [
+        "bug"
+      ]
     }
   ]
 }

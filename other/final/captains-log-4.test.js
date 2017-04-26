@@ -40,7 +40,7 @@ test('transpiles console.log calls to include contextual info', () => {
 function transpile(source) {
   const {code} = babel.transform(source, {
     parserOpts: {parser: recast.parse},
-    generatorOpts: {generator: recast.print},
+    generatorOpts: {generator: recast.print, lineTerminator: '\n'},
     babelrc: false,
     plugins: [captainsLog],
   })

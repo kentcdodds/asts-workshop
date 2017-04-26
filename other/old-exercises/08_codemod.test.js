@@ -11,7 +11,7 @@ test('codemods imports of CommonJS modules', () => {
   const {code} = babel.transform(esmFixContent, {
     filename: esmFixFixture,
     parserOpts: {parser: recast.parse},
-    generatorOpts: {generator: recast.print},
+    generatorOpts: {generator: recast.print, lineTerminator: '\n'},
     babelrc: false,
     plugins: [nodeESModulePlugin],
   })
