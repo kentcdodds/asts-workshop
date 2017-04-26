@@ -47,16 +47,16 @@ git diff HEAD:other/final/no-console-2.js other/final/no-console-3.js
 
 ### 3
 
+- Issues with scope
+- `context.getDeclaredVariables(variableDeclarator)[0].references.slice(1)`
+(returns an array because you can provide it a `VariableDeclaration` which could
+  have multiple declarators. Because we're giving it a single declarator, it will
+  always return an array of one item).
+  - `findParent` helper for finding the variable declarator
+
 ```
 git diff HEAD:other/final/no-console-3.js other/final/no-console-4.js
 ```
-
-- Issues with scope
-- `context.getDeclaredVariables(variableDeclarator)[0].references.slice(1)`
-  (returns an array because you can provide it a `VariableDeclaration` which could
-  have multiple declarators. Because we're giving it a single declarator, it will
-  always return an array of one item).
-- `findParent` helper for finding the variable declarator
 
 ### 4
 
