@@ -70,7 +70,13 @@ git diff HEAD:other/final/no-console-4.js other/final/no-console-5.js
 
 ## Babel `captains-log`
 
+> Don't forget to give the ASTs demo and talk about the differences in the API
+> like path instead of node etc.
+
 ### 0
+
+- Manipulation of the AST is just like manipulation of regular JS objects
+- Creating new nodes with [`babel.types`](http://babeljs.io/docs/core-packages/babel-types/)
 
 ```
 git diff HEAD:other/final/captains-log-0.js other/final/captains-log-1.js
@@ -78,11 +84,15 @@ git diff HEAD:other/final/captains-log-0.js other/final/captains-log-1.js
 
 ### 1
 
+- `path.findParent` + `babel.types` helpers
+
 ```
 git diff HEAD:other/final/captains-log-1.js other/final/captains-log-2.js
 ```
 
 ### 2
+
+- Not much different here. Just refactor to handle the new reqiurements
 
 ```
 git diff HEAD:other/final/captains-log-2.js other/final/captains-log-3.js
@@ -90,6 +100,60 @@ git diff HEAD:other/final/captains-log-2.js other/final/captains-log-3.js
 
 ### 3
 
+- Same, not a whole lot new here
+
 ```
 git diff HEAD:other/final/captains-log-3.js other/final/captains-log-4.js
+```
+
+## Codemod `ymnn-jquery`
+
+> Don't forget to give the ASTs demo and talk about the differences in use cases
+
+### 0
+
+- `babel.template`
+
+```javascript
+const templateString = `FOO.bar.BAZ(ONE, TWO)`
+const callExpression = template(templateString)({
+  FOO: t.identifier('someFoo'),
+  BAZ: t.identifier('otherBaz'),
+  ONE: t.numericLiteral(1),
+  TWO: t.numericLiteral(2),
+})
+path.replaceWith(callExpression)
+```
+
+```
+git diff HEAD:other/final/ymnn-jquery-0.js other/final/ymnn-jquery-1.js
+```
+
+### 1
+
+- Tip: Create a string literal with `t.stringLiteral`
+
+```
+git diff HEAD:other/final/ymnn-jquery-1.js other/final/ymnn-jquery-2.js
+```
+
+### 2
+
+- Not a ton here, mostly refactoring to handle another case.
+
+```
+git diff HEAD:other/final/ymnn-jquery-2.js other/final/ymnn-jquery-3.js
+```
+
+### 3
+
+- This one's exciting. Talk again about how not all the bindings have been
+  established yet so we need to store things locally for our file. in a `Set`.
+  Then when the program exits, we can go through and make our modifications.
+- `declaratorPath.scope.getBinding(declaratorPath.node.id.name)` then iterate on
+  the `binding.referencePaths`, from there it's pretty much just making new
+  functions and reusing things.
+
+```
+git diff HEAD:other/final/ymnn-jquery-3.js other/final/ymnn-jquery-4.js
 ```
