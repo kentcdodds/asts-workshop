@@ -38,7 +38,7 @@ module.exports = {
       'Program:exit'() {
         consoleUsage.forEach(identifier => {
           if (isDisallowedFunctionCall(identifier)) {
-            report(identifier.parent.property)
+            report(identifier.parent.property, identifier)
           } else {
             const variableDeclaratorParent = findParent(
               identifier,
@@ -60,7 +60,7 @@ module.exports = {
                 ) {
                   return
                 }
-                report(reference.identifier.parent.property)
+                report(reference.identifier.parent.property, identifier)
               })
             }
           }
@@ -68,12 +68,11 @@ module.exports = {
       },
     }
 
-    function report(property) {
+    function report(property, consoleObject) {
       context.report({
         node: property,
         message: 'Using console is not allowed',
         fix(fixer) {
-          const consoleObject = property.parent.object
           return fixer.replaceText(consoleObject, 'logger')
         },
       })
