@@ -79,6 +79,7 @@ module.exports = {
         finished: jest('demos/finished/jest.config.json', {hiddenFromHelp}),
       },
       final: jest('exercises-final/jest.config.json', {hiddenFromHelp}),
+      playground: jest('other/playground/jest.config.json'),
       all: {
         hiddenFromHelp,
         script: concurrent.nps('test.demos.finished', 'test.final'),
