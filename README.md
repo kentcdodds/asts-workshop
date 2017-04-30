@@ -33,8 +33,8 @@ By coding along with us for this two day workshop you’ll:
 The workflow of this workshop is fairly simple and based on
 [Make It Stick][makeitstick] methodologies:
 
-1. Learn a few concepts via quizzes (generation)
-2. Apply the concepts via tests (desirable difficulties)
+1. Learn a few concepts via demos
+2. Apply the concepts via exercises
 3. Write down three core concepts you learned and provide feedback on the
    exercise (elaboration and reflection)
 
@@ -73,8 +73,9 @@ git commit -am "ready to go"
 
 > Replace `YOUR_EMAIL@DOMAIN.COM` with your email address
 
-This may take a few minutes. If you get any errors, please read the error output and see whether there's any
-instructions to fix things and try again. If you're still getting errors or need any help at all, then please
+This may take a few minutes. If you get any errors, please read the error output
+and see whether there's any instructions to fix things and try again. If you're
+still getting errors or need any help at all, then please
 [file an issue][issue].
 
 If this finishes without issues, great 👏! However, if you have problems, please
@@ -108,6 +109,13 @@ npm start
 
 > Tip: You could run `npm start` in a separate terminal window, and use another
 > one to run the `npm start exercise...` scripts
+
+### On your own
+
+This workshop is intended to be grouped with a lecture, but if you're unable
+to watch a recording or have a lecture, then you can feel free to run through
+the workshop yourself. The solutions are all in the `other/final` directory
+if you get stuck. Good luck! 🎉
 
 ### Contributing
 
