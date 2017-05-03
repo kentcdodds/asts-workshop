@@ -115,7 +115,8 @@ npm start
 This workshop is intended to be grouped with a lecture, but if you're unable
 to watch a recording or have a lecture, then you can feel free to run through
 the workshop yourself. The solutions are all in the `other/final` directory
-if you get stuck. Good luck! 🎉
+if you get stuck. Good luck! 🎉 To get a primer on ASTs, you may find this
+talk recording helpful: [ASTs for Beginners](https://youtu.be/CFQBHy8RCpg)
 
 ### Contributing
 
