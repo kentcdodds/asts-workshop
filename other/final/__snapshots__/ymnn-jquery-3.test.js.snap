@@ -1,12 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`transpiles jquery calls to raw DOM APIs 1`] = `
-"el.style.display = \\"none\\"
-foo.hide()
+exports[`2. ymnn-jquery 1`] = `
+"
+$(el).hide();
 
-el.style.display = \\"\\"
-bar.show()
+      ↓ ↓ ↓ ↓ ↓ ↓
 
-el.classList.add(className)
-foo.addClass(otherClassThing)"
+el.style.display = \\"none\\";
+"
+`;
+
+exports[`4. ymnn-jquery 1`] = `
+"
+$(el).show();
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+el.style.display = \\"\\";
+"
+`;
+
+exports[`6. ymnn-jquery 1`] = `
+"
+$(el).addClass(className);
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+el.classList.add(className);
+"
 `;

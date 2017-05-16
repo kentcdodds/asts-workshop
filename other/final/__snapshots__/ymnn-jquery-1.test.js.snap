@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`transpiles jquery calls to raw DOM APIs 1`] = `
-"el.style.display = \\"none\\"
-foo.hide()"
+exports[`2. ymnn-jquery 1`] = `
+"
+$(el).hide();
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+el.style.display = 'none';
+"
 `;
