@@ -1,48 +1,37 @@
-import stripIndent from 'strip-indent'
-import * as recast from 'recast'
-import * as babel from 'babel-core'
+import path from 'path'
+import testBabel from '../test-babel'
 import captainsLog from './captains-log-4'
 
-test('transpiles console.log calls to include contextual info', () => {
-  const source = stripIndent(
+testBabel({
+  plugin: captainsLog,
+  snapshot: true,
+  fixtures: path.join(__dirname, './__fixtures__'),
+  tests: [
+    {
+      title: 'outside a function',
+      code: `console.log('sup dawg')`,
+      output: `console.log('1:0', 'sup dawg');`,
+      snapshot: false,
+    },
     `
       function add(a, b) {
         console.log(a, b)
         return a + b
       }
-
-      function subtract(a, b) {
-        console.log(a, b)
-        return a - b
-      }
-
+    `,
+    `
       const multiply = (a, b) => {
         console.log(a, b)
         return a * b
       }
-
+    `,
+    `
       const divide = function(a, b) {
         console.log(a, b)
         return a / b
       }
-
-      add(1, 2)
-      subtract(2, 1)
-      multiply(3, 4)
-      divide(25, 5)
-      console.log('sup dawg')
     `,
-  ).trim()
-  const code = transpile(source)
-  expect(code).toMatchSnapshot()
+    {fixture: 'log.js'},
+    {fixture: 'log2.js'},
+  ],
 })
-
-function transpile(source) {
-  const {code} = babel.transform(source, {
-    parserOpts: {parser: recast.parse},
-    generatorOpts: {generator: recast.print, lineTerminator: '\n'},
-    babelrc: false,
-    plugins: [captainsLog],
-  })
-  return code
-}
