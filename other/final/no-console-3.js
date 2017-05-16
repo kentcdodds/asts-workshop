@@ -7,37 +7,15 @@ module.exports = {
       category: 'Best Practices',
       recommended: true,
     },
-    schema: [
-      {
-        type: 'object',
-        properties: {
-          allowedMethods: {
-            type: 'array',
-            items: {
-              enum: ['log', 'info', 'warn', 'error', 'dir'],
-            },
-            minItems: 1,
-            uniqueItems: true,
-          },
-        },
-      },
-    ],
   },
   create(context) {
-    const config = context.options[0] || {}
-    const allowedMethods = config.allowedMethods || []
     return {
-      Identifier(node) {
+      'CallExpression > MemberExpression > Identifier[name="console"]'(node) {
         if (
           !looksLike(node, {
-            name: 'console',
             parent: {
-              type: 'MemberExpression',
-              parent: {type: 'CallExpression'},
               property: {
-                name: val =>
-                  !allowedMethods.includes(val) &&
-                  disallowedMethods.includes(val),
+                name: val => disallowedMethods.includes(val),
               },
             },
           })

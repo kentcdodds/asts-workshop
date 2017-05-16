@@ -4,9 +4,9 @@ const rule = require('./no-console-4')
 const ruleTester = new RuleTester()
 ruleTester.run('no-console', rule, {
   valid: [
-    'foo.console()',
-    'console()',
     'info()',
+    'console',
+    'console.log',
     'console.baz()',
     {code: 'console.warn()', options: [{allowedMethods: ['warn']}]},
   ],
@@ -14,12 +14,6 @@ ruleTester.run('no-console', rule, {
     invalid('console.log()'),
     invalid('console.info()'),
     invalid('console.warn()'),
-    invalid(
-      `
-        var csl = console
-        csl.log()
-      `,
-    ),
   ],
 })
 

@@ -3,7 +3,7 @@ const rule = require('./no-console-2')
 
 const ruleTester = new RuleTester()
 ruleTester.run('no-console', rule, {
-  valid: ['foo.console()', 'console()', 'info()', 'console.baz()'],
+  valid: ['info()', 'console', 'console.log'],
   invalid: [
     invalid('console.log()'),
     invalid('console.info()'),
