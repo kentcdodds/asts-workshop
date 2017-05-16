@@ -54,8 +54,8 @@ module.exports = {
         script: 'jest --watchAll',
       },
       final: {
-        default: 'jest --config=other/final/jest.config.json',
-        watch: 'jest --config=other/final/jest.config.json --watch',
+        default: 'jest --projects other/final',
+        watch: 'jest --projects other/final --watch',
       },
     },
     split: {
