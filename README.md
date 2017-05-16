@@ -17,9 +17,20 @@ Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code_
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
 
+**Before You Start**
+
+I've used this repo to teach about ASTs in various settings. I've branched the
+repo for each one of them. Reference those branches based on what you're
+following along with:
+
+- Frontend Masters: [`fem`](https://github.com/kentcdodds/asts-workshop/tree/fem)
+
+To checkout that branch run: `git checkout <branch name>`. From there on you
+should be good.
+
 ## Welcome
 
-By coding along with us for this two day workshop you’ll:
+By coding along with us in this workshop you’ll:
 
 - Learn what can be done with Abstract Syntax Trees.
 - Explore what tools are available for learning about and developing with ASTs.
