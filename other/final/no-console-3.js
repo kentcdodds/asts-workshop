@@ -1,13 +1,6 @@
 const disallowedMethods = ['log', 'info', 'warn', 'error', 'dir']
 
 module.exports = {
-  meta: {
-    docs: {
-      description: 'Disallow use of console',
-      category: 'Best Practices',
-      recommended: true,
-    },
-  },
   create(context) {
     return {
       Identifier(node) {
