@@ -10,10 +10,13 @@ module.exports = {
   },
   create(context) {
     return {
-      'CallExpression > MemberExpression > Identifier[name="console"]'(node) {
+      Identifier(node) {
         if (
           !looksLike(node, {
+            name: 'console',
             parent: {
+              type: 'MemberExpression',
+              parent: {type: 'CallExpression'},
               property: {
                 name: val => disallowedMethods.includes(val),
               },
