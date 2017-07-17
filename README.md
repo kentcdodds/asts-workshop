@@ -28,6 +28,8 @@ following along with:
 To checkout that branch run: `git checkout <branch name>`. From there on you
 should be good.
 
+You may also want to check out the `Changes` section in the README below.
+
 ## Welcome
 
 By coding along with us in this workshop you’ll:
@@ -143,6 +145,13 @@ a link to your event.
 
 - [Kent C. Dodds][twitter-kentcdodds] at [Frontend Masters][fem] (in April 2017)
 
+## Changes
+
+The community and tools move fast. Here's a list of changes since I first gave
+this workshop:
+
+- [babel-plugin-tester][tester] was released and is a fantastic way to test your plugins
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
@@ -197,3 +206,5 @@ MIT
 [fem]: https://frontendmasters.com/
 [contributing]: https://github.com/kentcdodds/asts-workshop/blob/master/CONTRIBUTING.md
 [nps]: https://npmjs.com/package/nps
+[tester]: https://github.com/babel-utils/babel-plugin-tester
+
