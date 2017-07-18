@@ -14,12 +14,19 @@ ruleTester.run('no-console', rule, {
     invalid('console.log()'),
     invalid('console.info()'),
     invalid('console.warn()'),
-    invalid(
-      `
+    {
+      code: `
         var csl = console
         csl.log()
+
+        var lcs = csl
+        lcs.info()
+
+        var scl = lcs
+        scl.warn()
       `,
-    ),
+      errors: 3,
+    },
   ],
 })
 
