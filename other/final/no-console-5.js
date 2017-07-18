@@ -75,7 +75,9 @@ module.exports = {
                 parent => parent.type === 'VariableDeclarator',
               )
             ) {
-              return reportDeniedMethodUsage(reference.identifier)
+              reportDeniedMethodUsage(reference.identifier)
+
+              return
             }
 
             if (
