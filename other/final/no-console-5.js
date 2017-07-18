@@ -35,41 +35,7 @@ module.exports = {
         consoleUsage.push(node)
       },
       'Program:exit'() {
-        consoleUsage.forEach(identifier => {
-          if (isDisallowedFunctionCall(identifier)) {
-            context.report({
-              node: identifier.parent.property,
-              message: 'Using console is not allowed',
-            })
-          } else {
-            const variableDeclaratorParent = findParent(
-              identifier,
-              parent => parent.type === 'VariableDeclarator',
-            )
-            if (variableDeclaratorParent) {
-              const references = context
-                .getDeclaredVariables(variableDeclaratorParent)[0]
-                .references.slice(1)
-              references.forEach(reference => {
-                if (
-                  !looksLike(reference, {
-                    identifier: {
-                      parent: {
-                        property: isDisallowedFunctionCall,
-                      },
-                    },
-                  })
-                ) {
-                  return
-                }
-                context.report({
-                  node: reference.identifier.parent.property,
-                  message: 'Using console is not allowed',
-                })
-              })
-            }
-          }
-        })
+        consoleUsage.forEach(reportDeniedMethodUsage)
       },
     }
 
@@ -84,6 +50,55 @@ module.exports = {
           },
         },
       })
+    }
+
+    function reportDeniedMethodUsage(identifier) {
+      if (isDisallowedFunctionCall(identifier)) {
+        context.report({
+          node: identifier.parent.property,
+          message: 'Using console is not allowed',
+        })
+      } else {
+        const variableDeclaratorParent = findParent(
+          identifier,
+          parent => parent.type === 'VariableDeclarator',
+        )
+        if (variableDeclaratorParent) {
+          const references = context
+            .getDeclaredVariables(variableDeclaratorParent)[0]
+            .references.slice(1)
+
+          references.forEach(reference => {
+            if (
+              findParent(
+                reference.identifier,
+                parent => parent.type === 'VariableDeclarator',
+              )
+            ) {
+              reportDeniedMethodUsage(reference.identifier)
+
+              return
+            }
+
+            if (
+              !looksLike(reference, {
+                identifier: {
+                  parent: {
+                    property: isDisallowedFunctionCall,
+                  },
+                },
+              })
+            ) {
+              return
+            }
+
+            context.report({
+              node: reference.identifier.parent.property,
+              message: 'Using console is not allowed',
+            })
+          })
+        }
+      }
     }
   },
 }
