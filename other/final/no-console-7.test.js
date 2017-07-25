@@ -14,6 +14,16 @@ ruleTester.run('no-console', rule, {
     invalid('console.log()'),
     invalid('console.info()'),
     invalid('console.warn()'),
+    invalid(
+      `
+        var csl = console
+        csl.log()
+      `,
+      `
+        var csl = logger
+        csl.log()
+      `,
+    ),
     {
       code: `
         var csl = console
@@ -26,6 +36,19 @@ ruleTester.run('no-console', rule, {
         scl.warn()
       `,
       errors: 3,
+    },
+    {
+      code: `
+        var csl = logger
+        csl.log()
+
+        var lcs = csl
+        lcs.info()
+
+        var scl = lcs
+        scl.warn()
+      `,
+      errors: 0,
     },
   ],
 })

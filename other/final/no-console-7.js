@@ -7,6 +7,7 @@ module.exports = {
       category: 'Best Practices',
       recommended: true,
     },
+    fixable: 'code',
     schema: [
       {
         type: 'object',
@@ -39,10 +40,16 @@ module.exports = {
       },
     }
 
-    function report(property) {
+    function report(property, consoleReference) {
       context.report({
         node: property,
         message: 'Using console is not allowed',
+        fix(fixer) {
+          return (
+            consoleReference.name === 'console' &&
+            fixer.replaceText(consoleReference, 'logger')
+          )
+        },
       })
     }
 
@@ -61,7 +68,7 @@ module.exports = {
 
     function checkDeniedMethodUsage(identifier) {
       if (isDisallowedFunctionCall(identifier)) {
-        report(identifier.parent.property)
+        report(identifier.parent.property, identifier)
       } else {
         const variableDeclaratorParent = findParent(
           identifier,
@@ -96,7 +103,7 @@ module.exports = {
               return
             }
 
-            report(reference.identifier.parent.property)
+            report(reference.identifier.parent.property, identifier)
           })
         }
       }
