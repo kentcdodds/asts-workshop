@@ -17,6 +17,8 @@ Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code_
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
 
+<a href="https://app.codesponsor.io/link/PKGFLnhDiFvsUA5P4kAXfiPs/kentcdodds/asts-workshop" rel="nofollow"><img src="https://app.codesponsor.io/embed/PKGFLnhDiFvsUA5P4kAXfiPs/kentcdodds/asts-workshop.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
+
 **Before You Start**
 
 I've used this repo to teach about ASTs in various settings. I've branched the
