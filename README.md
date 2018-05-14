@@ -8,7 +8,7 @@ Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code_
 [![Build Status][build-badge]][build]
 [![Dependencies][dependencyci-badge]][dependencyci]
 [![MIT License][license-badge]][LICENSE]
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 
 [![PRs Welcome][prs-badge]][prs]
 [![Donate][donate-badge]][donate]
@@ -159,8 +159,8 @@ this workshop:
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub>Kent C. Dodds</sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/asts-workshop/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/asts-workshop/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/asts-workshop/commits?author=kentcdodds "Tests") | [<img src="https://avatars3.githubusercontent.com/u/15315098?v=3" width="100px;"/><br /><sub>João Marques</sub>](https://github.com/tigermarques)<br />[🐛](https://github.com/kentcdodds/asts-workshop/issues?q=author%3Atigermarques "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/999432?v=4" width="100px;"/><br /><sub>Mircea Staicu</sub>](https://github.com/mstaicu)<br /> |
-| :---: | :---: | :---: |
+| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub>Kent C. Dodds</sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/asts-workshop/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/asts-workshop/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/asts-workshop/commits?author=kentcdodds "Tests") | [<img src="https://avatars3.githubusercontent.com/u/15315098?v=3" width="100px;"/><br /><sub>João Marques</sub>](https://github.com/tigermarques)<br />[🐛](https://github.com/kentcdodds/asts-workshop/issues?q=author%3Atigermarques "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/999432?v=4" width="100px;"/><br /><sub>Mircea Staicu</sub>](https://github.com/mstaicu)<br />[💻](https://github.com/kentcdodds/asts-workshop/commits?author=mstaicu "Code") [⚠️](https://github.com/kentcdodds/asts-workshop/commits?author=mstaicu "Tests") | [<img src="https://avatars3.githubusercontent.com/u/6963212?v=4" width="100px;"/><br /><sub>Adam Goldman</sub>](https://www.adamgoldman.me)<br /> |
+| :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
