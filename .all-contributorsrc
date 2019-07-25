@@ -27,6 +27,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "barrymay",
+      "name": "Barry",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5514034?v=4",
+      "profile": "https://github.com/barrymay",
+      "contributions": [
+        "infra"
+      ]
     }
   ]
 }
