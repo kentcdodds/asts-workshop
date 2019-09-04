@@ -36,7 +36,7 @@ const banner = stripIndent(
 
 const footer = fs
   .readFileSync(path.resolve(__dirname, '../other/template-test.js'), 'utf8')
-  .replace(/&e=/, `&e=${scriptName}%20exerciese%20${testNumber}`)
+  .replace(/&e=/, `&e=${scriptName}%20exercise%20${testNumber}`)
 
 const testExists = fileExists.sync(finalTestPath)
 if (testExists) {
