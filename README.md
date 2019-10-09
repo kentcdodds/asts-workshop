@@ -14,7 +14,7 @@ Syntax Trees 🌳 to lint ⚠️ and transform 🔀 your code_
 [![Build Status][build-badge]][build]
 [![Dependencies][dependencyci-badge]][dependencyci]
 [![MIT License][license-badge]][LICENSE]
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 
 [![PRs Welcome][prs-badge]][prs]
 [![Donate][donate-badge]][donate]
@@ -172,6 +172,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
     <td align="center"><a href="https://github.com/tigermarques"><img src="https://avatars3.githubusercontent.com/u/15315098?v=3" width="100px;" alt="João Marques"/><br /><sub><b>João Marques</b></sub></a><br /><a href="https://github.com/kentcdodds/asts-workshop/issues?q=author%3Atigermarques" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/mstaicu"><img src="https://avatars0.githubusercontent.com/u/999432?v=4" width="100px;" alt="Mircea Staicu"/><br /><sub><b>Mircea Staicu</b></sub></a><br /><a href="https://github.com/kentcdodds/asts-workshop/commits?author=mstaicu" title="Code">💻</a> <a href="https://github.com/kentcdodds/asts-workshop/commits?author=mstaicu" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://twitter.com/StanimiraVlaeva"><img src="https://avatars2.githubusercontent.com/u/7893485?v=4" width="100px;" alt="Stanimira Vlaeva"/><br /><sub><b>Stanimira Vlaeva</b></sub></a><br /><a href="https://github.com/kentcdodds/asts-workshop/commits?author=sis0k0" title="Code">💻</a></td>
+    <td align="center"><a href="https://stackshare.io/jdorfman/decisions"><img src="https://avatars1.githubusercontent.com/u/398230?v=4" width="100px;" alt="Justin Dorfman"/><br /><sub><b>Justin Dorfman</b></sub></a><br /><a href="#fundingFinding-jdorfman" title="Funding Finding">🔍</a></td>
   </tr>
 </table>
 
