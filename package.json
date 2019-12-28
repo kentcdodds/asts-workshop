@@ -28,7 +28,7 @@
     "eslint-plugin-babel": "^4.1.1",
     "file-exists": "^3.0.2",
     "glob": "^7.1.1",
-    "handlebars": "^4.0.8",
+    "handlebars": "^4.3.0",
     "husky": "^0.13.3",
     "is-builtin-module": "^1.0.0",
     "jest": "^20.0.1",
