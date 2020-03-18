@@ -1,9 +1,3 @@
-<p align="center">
-<a href="https://codefund.io/properties/506/visit-sponsor">
-<img src="https://codefund.io/properties/506/sponsor" />
-</a>
-</p>
-
 # JavaScript ASTs Workshop
 
 _Improved productivity 💯 with the practical 🤓 use of the power 💪 of Abstract
@@ -224,4 +218,3 @@ MIT
 [contributing]: https://github.com/kentcdodds/asts-workshop/blob/master/CONTRIBUTING.md
 [nps]: https://npmjs.com/package/nps
 [tester]: https://github.com/babel-utils/babel-plugin-tester
-
